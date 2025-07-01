@@ -1,0 +1,58 @@
+
+.animation-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(179, 174, 219, 0.1); /* #B3AEDB with low opacity */
+    filter: blur(20px);
+    animation: float 20s infinite linear;
+}
+
+.shape-1 {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 15%;
+    animation-duration: 15s;
+}
+
+.shape-2 {
+    width: 300px;
+    height: 300px;
+    top: 30%;
+    right: 10%;
+    animation-duration: 20s;
+    animation-delay: 3s;
+}
+
+.shape-3 {
+    width: 150px;
+    height: 150px;
+    bottom: 20%;
+    left: 25%;
+    animation-duration: 25s;
+    animation-delay: 1s;
+}
+
+.shape-4 {
+    width: 250px;
+    height: 250px;
+    bottom: 5%;
+    right: 20%;
+    animation-duration: 18s;
+    animation-delay: 5s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    25% { transform: translateY(-20px) translateX(20px) rotate(90deg); }
+    50% { transform: translateY(20px) translateX(-20px) rotate(180deg); }
+    75% { transform: translateY(-20px) translateX(20px) rotate(270deg); }
+    100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
+}
