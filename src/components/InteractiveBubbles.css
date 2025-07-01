@@ -1,0 +1,16 @@
+.interactive-bubbles-container {
+  position: absolute; /* Change to absolute */
+  top: 0;
+  left: 0;
+  width: 100%; /* Will be set by JS */
+  height: 100%; /* Will be set by JS */
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  background-color: rgba(179, 174, 219, 0.15); /* Light purple, semi-transparent */
+  border-radius: 50%;
+  /* No animation here, position is controlled by JS */
+}

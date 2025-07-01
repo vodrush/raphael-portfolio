@@ -1,7 +1,7 @@
 
 import React from 'react';
-import HeroAnimation from './HeroAnimation';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import './RaphaelImage.css';
 
 const Hero = () => {
   return (
@@ -13,13 +13,13 @@ const Hero = () => {
         <div className="hero-buttons fade-in-down-delay-3">
           <a href="#projects" className="cta-button">Voir mes projets</a>
           <div className="hero-socials">
-            <a href="https://github.com/vodrush" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
-            <a href="https://www.linkedin.com/in/raphael-santiago-7b80961b5/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+            <a href="https://github.com/vodrush" target="_blank" rel="noopener noreferrer" aria-label="Voir mon profil GitHub"><FaGithub /></a>
+            <a href="https://www.linkedin.com/in/raphael-santiago-7b80961b5/" target="_blank" rel="noopener noreferrer" aria-label="Voir mon profil LinkedIn"><FaLinkedin /></a>
           </div>
         </div>
       </div>
-      <div className="hero-animation">
-        <HeroAnimation />
+      <div className="hero-image-container">
+        <img src="/raphchill.jpg" alt="Raphael Santiago" className="raphael-image" />
       </div>
     </section>
   );

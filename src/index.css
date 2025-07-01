@@ -6,16 +6,86 @@
 }
 
 html {
+  height: 100%;
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #1F1C2C;
-  color: #928DAB;
+  height: 100%;
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
   font-family: 'Lato', 'Roboto', sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme variables */
+:root {
+  --background-color-dark: #1F1C2C;
+  --text-color-dark: #B0B0B0;
+  --header-color-dark: #B3AEDB;
+  --card-background-dark: #2A263C;
+  --border-color-dark: #2a263c;
+
+  --background-color-light: #f0f2f5;
+  --text-color-light: #333;
+  --header-color-light: #007bff;
+  --card-background-light: #ffffff;
+  --border-color-light: #ddd;
+}
+
+body.dark-mode {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+body.light-mode {
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensure it's above other content */
+  width: 50px; /* Make it a bit larger */
+  height: 50px; /* Make it a bit larger */
+  border-radius: 50%; /* Keep it round */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow: hidden;
+  background-color: var(--header-color-dark); /* Use theme color */
+  color: var(--background-color-dark); /* Use theme color */
+  border: none;
+}
+
+body.light-mode .theme-toggle-button {
+  background-color: var(--header-color-light);
+  color: var(--card-background-light);
+}
+
+.theme-icon {
+  font-size: 1.8rem; /* Make icons larger */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.5s ease-in-out;
+}
+
+.theme-icon.visible {
+  opacity: 1;
+}
+
+.theme-icon.hidden {
+  opacity: 0;
 }
 
 /* --- Animation Keyframes --- */
@@ -54,8 +124,16 @@ body {
 h1, h2, h3, h4 {
   font-family: 'Poppins', 'Montserrat', sans-serif;
   font-weight: 700;
-  color: #B3AEDB; /* Using accent for main headers */
   letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4 {
+  color: var(--header-color-dark);
+}
+
+body.light-mode h1, body.light-mode h2, body.light-mode h3, body.light-mode h4 {
+  color: var(--header-color-light);
 }
 
 h1 {
@@ -78,20 +156,42 @@ h2::after {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background-color: #B3AEDB;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode h2::after {
+  background-color: var(--header-color-dark);
+}
+
+body.light-mode h2::after {
+  background-color: var(--header-color-light);
 }
 
 h3 {
   font-size: 1.5rem;
   margin-bottom: 20px;
-  color: #928DAB;
+}
+
+body.dark-mode h3 {
+  color: var(--text-color-dark);
+}
+
+body.light-mode h3 {
+  color: var(--text-color-light);
 }
 
 h4 {
   font-size: 1.1rem;
-  color: #928DAB; /* Softer color for sub-headings */
   margin-bottom: 5px;
   margin-top: 15px;
+}
+
+body.dark-mode h4 {
+  color: var(--text-color-dark); /* Softer color for sub-headings */
+}
+
+body.light-mode h4 {
+  color: var(--text-color-light); /* Softer color for sub-headings */
 }
 
 /* --- Layout & Sections --- */
@@ -120,7 +220,6 @@ section {
 
 .hero-text h2 {
   font-size: 1.5rem;
-  color: #928DAB;
   margin-bottom: 20px;
   text-align: left;
   border: none;
@@ -146,15 +245,20 @@ section {
   gap: 15px;
 }
 
-.hero-socials a {
-  color: #928DAB;
-  font-size: 1.8rem;
-  transition: color 0.3s ease, transform 0.3s ease;
+body.dark-mode .hero-socials a {
+  color: var(--text-color-dark);
 }
 
-.hero-socials a:hover {
-  color: #B3AEDB;
-  transform: translateY(-3px);
+body.light-mode .hero-socials a {
+  color: var(--text-color-light);
+}
+
+body.dark-mode .hero-socials a:hover {
+  color: var(--header-color-dark);
+}
+
+body.light-mode .hero-socials a:hover {
+  color: var(--header-color-light);
 }
 
 .hero-animation {
@@ -194,9 +298,18 @@ section {
 }
 
 .skills-category h3 {
-  border-bottom: 2px solid #2a263c;
+  border-bottom: 2px solid;
   padding-bottom: 10px;
   margin-bottom: 20px;
+  transition: border-color 0.3s ease;
+}
+
+body.dark-mode .skills-category h3 {
+  border-color: var(--border-color-dark);
+}
+
+body.light-mode .skills-category h3 {
+  border-color: var(--border-color-light);
 }
 
 .skills-list {
@@ -207,14 +320,21 @@ section {
 }
 
 .skill-item {
-  background-color: #2a263c;
   padding: 10px 20px;
   border-radius: 5px;
   font-weight: bold;
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+body.dark-mode .skill-item {
+  background-color: var(--card-background-dark);
+}
+
+body.light-mode .skill-item {
+  background-color: var(--card-background-light);
 }
 
 .skill-item:hover {
@@ -223,7 +343,15 @@ section {
 
 .skill-icon {
     font-size: 1.5rem;
-    color: #B3AEDB;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .skill-icon {
+  color: var(--header-color-dark);
+}
+
+body.light-mode .skill-icon {
+  color: var(--header-color-light);
 }
 
 .skills .section-title-container,
@@ -241,21 +369,35 @@ section {
 /* --- Call to Action Button --- */
 .cta-button {
   display: inline-block;
-  border: 2px solid #B3AEDB;
-  color: #B3AEDB;
-  background-color: transparent;
+  border: 2px solid;
   padding: 12px 25px;
   text-decoration: none;
   font-weight: bold;
   border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
 }
 
-.cta-button:hover {
-  background-color: #B3AEDB;
-  color: #1F1C2C;
-  transform: translateY(-3px);
+body.dark-mode .cta-button {
+  border-color: var(--header-color-dark);
+  color: var(--header-color-dark);
+  background-color: transparent;
+}
+
+body.light-mode .cta-button {
+  border-color: var(--header-color-light);
+  color: var(--header-color-light);
+  background-color: transparent;
+}
+
+body.dark-mode .cta-button:hover {
+  background-color: var(--header-color-dark);
+  color: var(--background-color-dark);
+}
+
+body.light-mode .cta-button:hover {
+  background-color: var(--header-color-light);
+  color: var(--card-background-light);
 }
 
 /* --- Projects Section --- */
@@ -266,15 +408,24 @@ section {
 }
 
 .project-card {
-  background-color: #2a263c;
   padding: 30px;
   border-radius: 8px;
-  border: 1px solid transparent;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  border: 1px solid;
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
   
   /* Animation initial state */
   opacity: 0;
   transform: translateY(20px);
+}
+
+body.dark-mode .project-card {
+  background-color: var(--card-background-dark);
+  border-color: transparent;
+}
+
+body.light-mode .project-card {
+  background-color: var(--card-background-light);
+  border-color: var(--border-color-light);
 }
 
 .project-card.is-visible {
@@ -283,9 +434,14 @@ section {
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.project-card:hover {
+body.dark-mode .project-card:hover {
   transform: translateY(-5px);
-  border-color: #B3AEDB;
+  border-color: var(--header-color-dark);
+}
+
+body.light-mode .project-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--header-color-light);
 }
 
 .tech-stack {
@@ -296,12 +452,21 @@ section {
 }
 
 .tech-tag {
-  background-color: #1F1C2C;
-  color: #B3AEDB;
   padding: 5px 12px;
   border-radius: 20px; /* Pill shape */
   font-size: 0.8rem;
   font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .tech-tag {
+  background-color: var(--background-color-dark);
+  color: var(--header-color-dark);
+}
+
+body.light-mode .tech-tag {
+  background-color: var(--border-color-light);
+  color: var(--text-color-light);
 }
 
 .project-links {
@@ -350,15 +515,38 @@ section {
   width: 100%;
   padding: 15px;
   border-radius: 5px;
-  border: 1px solid #2a263c;
-  background-color: #2a263c;
-  color: #928DAB;
+  border: 1px solid;
   font-family: inherit;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+  border-color: var(--border-color-dark);
+  background-color: var(--card-background-dark);
+  color: var(--text-color-dark);
+}
+
+body.light-mode .contact-form input,
+body.light-mode .contact-form textarea {
+  border-color: var(--border-color-light);
+  background-color: var(--card-background-light);
+  color: var(--text-color-light);
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: #928DAB;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .contact-form input::placeholder,
+body.dark-mode .contact-form textarea::placeholder {
+  color: var(--text-color-dark);
+}
+
+body.light-mode .contact-form input::placeholder,
+body.light-mode .contact-form textarea::placeholder {
+  color: var(--text-color-light);
 }
 
 .contact-form button {
@@ -368,7 +556,23 @@ section {
 .status-message {
   margin-top: 10px;
   font-weight: bold;
-  color: #B3AEDB; /* Accent color for success/info */
+  transition: color 0.3s ease;
+}
+
+.status-message.success {
+  color: #28a745; /* Green for success */
+}
+
+.status-message.error {
+  color: #dc3545; /* Red for error */
+}
+
+body.dark-mode .status-message {
+  color: var(--header-color-dark); /* Accent color for success/info */
+}
+
+body.light-mode .status-message {
+  color: var(--header-color-light); /* Accent color for success/info */
 }
 
 /* --- Responsive Design --- */
@@ -388,4 +592,8 @@ section {
   .skills-container {
     grid-template-columns: 1fr;
   }
+}
+
+.App {
+  min-height: 100vh;
 }
