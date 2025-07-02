@@ -29,11 +29,11 @@ body {
   --card-background-dark: #2A263C;
   --border-color-dark: #2a263c;
 
-  --background-color-light: #f0f2f5;
-  --text-color-light: #333;
-  --header-color-light: #007bff;
-  --card-background-light: #ffffff;
-  --border-color-light: #ddd;
+  --background-color-light: #FCF7F8;
+  --text-color-light: #A31621;
+  --header-color-light: #A31621;
+  --card-background-light: #FFFFFF;
+  --border-color-light: #E0E0E0;
 }
 
 body.dark-mode {
@@ -568,11 +568,11 @@ body.light-mode .contact-form textarea::placeholder {
 }
 
 body.dark-mode .status-message {
-  color: var(--header-color-dark); /* Accent color for success/info */
+  color: var(--header-color-dark);
 }
 
 body.light-mode .status-message {
-  color: var(--header-color-light); /* Accent color for success/info */
+  color: var(--header-color-light);
 }
 
 /* --- Responsive Design --- */

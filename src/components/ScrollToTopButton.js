@@ -32,7 +32,7 @@ const ScrollToTopButton = () => {
   return (
     <div className="scroll-to-top">
       {isVisible && 
-        <button onClick={scrollToTop} className="cta-button">
+        <button onClick={scrollToTop}>
           <FaArrowUp />
         </button>}
     </div>

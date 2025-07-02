@@ -1,4 +1,3 @@
-/* Scroll to Top Button */
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
@@ -7,8 +6,8 @@
 }
 
 .scroll-to-top button {
-  background-color: var(--header-color-dark);
-  color: var(--background-color-dark);
+  background-color: var(--header-color-dark); /* Use theme color for background */
+  color: var(--background-color-dark); /* Use theme color for icon */
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -20,6 +19,7 @@
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  opacity: 1; /* Ensure full opacity */
 }
 
 .scroll-to-top button:hover {
@@ -27,6 +27,13 @@
 }
 
 body.light-mode .scroll-to-top button {
-  background-color: var(--header-color-light);
-  color: var(--card-background-light);
+  background-color: var(--header-color-light); /* Light mode background */
+  color: var(--card-background-light); /* Light mode icon color */
+}
+
+.scroll-to-top button svg {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
 }

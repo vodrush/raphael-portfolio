@@ -14,22 +14,28 @@ const InteractiveBubbles = () => {
   };
 
   useEffect(() => {
-    updateContainerSize(); // Initial call on mount
+    const initializeBubbles = () => {
+      updateContainerSize(); // Update size before generating bubbles
+
+      const newBubbles = Array.from({ length: 250 }).map((_, i) => ({
+        id: i,
+        x: Math.random() * document.documentElement.scrollWidth,
+        y: Math.random() * document.documentElement.scrollHeight, // Generate across full scrollHeight
+        size: 20 + Math.random() * 80,
+        vx: (Math.random() - 0.5) * 0.5, // Subtle initial velocity
+        vy: (Math.random() - 0.5) * 0.5,
+      }));
+      setBubbles(newBubbles);
+    };
+
+    // Delay initialization to allow DOM to fully render
+    const timeoutId = setTimeout(initializeBubbles, 500); // 500ms delay
+
     window.addEventListener('resize', updateContainerSize);
 
     // Observe changes in the DOM to update container size
     const observer = new MutationObserver(updateContainerSize);
     observer.observe(document.body, { childList: true, subtree: true, attributes: true });
-
-    const newBubbles = Array.from({ length: 250 }).map((_, i) => ({
-      id: i,
-      x: Math.random() * document.documentElement.scrollWidth,
-      y: Math.random() * document.documentElement.scrollHeight,
-      size: 20 + Math.random() * 80,
-      vx: (Math.random() - 0.5) * 5, // Stronger initial velocity
-      vy: (Math.random() - 0.5) * 5,
-    }));
-    setBubbles(newBubbles);
 
     const handleMouseMove = (e) => {
       mousePosition.current = { x: e.clientX, y: e.clientY };
@@ -43,8 +49,8 @@ const InteractiveBubbles = () => {
           let { x, y, vx, vy, size } = bubble;
 
           // Add random drift
-          vx += (Math.random() - 0.5) * 0.05;
-          vy += (Math.random() - 0.5) * 0.05;
+          vx += (Math.random() - 0.5) * 0.2;
+          vy += (Math.random() - 0.5) * 0.2;
 
           // Apply basic movement
           x += vx;
@@ -84,6 +90,7 @@ const InteractiveBubbles = () => {
     animate();
 
     return () => {
+      clearTimeout(timeoutId);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', updateContainerSize);
       observer.disconnect(); // Disconnect the observer on unmount

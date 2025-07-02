@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import './index.css';
 import './theme-toggle-animation.css';
 import Hero from './components/Hero';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import { FaMoon, FaSun } from 'react-icons/fa';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
 import InteractiveBubbles from './components/InteractiveBubbles';
+import ScrollProgressIndicator from './components/ScrollProgressIndicator';
+
+const About = lazy(() => import('./components/About'));
+const Skills = lazy(() => import('./components/Skills'));
+const Projects = lazy(() => import('./components/Projects'));
+const Contact = lazy(() => import('./components/Contact'));
 
 function App() {
   const [theme, setTheme] = useState('dark'); // 'dark' or 'light'
@@ -23,17 +25,20 @@ function App() {
 
   return (
     <div className="App">
+      <ScrollProgressIndicator />
       <InteractiveBubbles />
-      <button onClick={toggleTheme} className="theme-toggle-button">
+      <button onClick={toggleTheme} className="theme-toggle-button" aria-label="Changer le thème">
         <FaMoon className={`theme-icon moon-icon ${theme === 'dark' ? 'visible' : 'hidden'}`} />
         <FaSun className={`theme-icon sun-icon ${theme === 'light' ? 'visible' : 'hidden'}`} />
       </button>
       <main>
         <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
+        <Suspense fallback={<div>Chargement...</div>}>
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+        </Suspense>
       </main>
       <ScrollToTopButton />
     </div>
