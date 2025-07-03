@@ -7,12 +7,13 @@
 }
 
 .raphael-image {
-  width: 300px; /* Adjust size as needed */
-  height: 300px; /* Adjust size as needed */
-  border-radius: 50%; /* Makes the image round */
-  object-fit: cover; /* Ensures the image covers the area without distortion */
-  border: 5px solid var(--header-color-dark); /* Border color from theme */
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  width: 100%; /* Use percentage for width */
+  max-width: 300px; /* Set a max-width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--header-color-dark);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
