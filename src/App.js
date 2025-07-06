@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import './index.css';
 
 import Hero from './components/Hero';
@@ -16,6 +16,7 @@ const Learning = lazy(() => import('./components/Learning'));
 
 function App() {
   const [theme, setTheme] = useState('dark');
+  const mainRef = useRef(null);
 
   useEffect(() => {
     document.body.className = theme + '-mode';
@@ -28,12 +29,12 @@ function App() {
   return (
     <div className="App">
       <ScrollProgressIndicator />
-      <InteractiveBubbles />
+      <InteractiveBubbles mainRef={mainRef} />
       <button onClick={toggleTheme} className="theme-toggle-button" aria-label="Changer le thème">
         <FaMoon className={`theme-icon moon-icon ${theme === 'dark' ? 'visible' : 'hidden'}`} />
         <FaSun className={`theme-icon sun-icon ${theme === 'light' ? 'visible' : 'hidden'}`} />
       </button>
-      <main>
+      <main ref={mainRef}>
         <Hero />
         <Suspense fallback={<div>Chargement...</div>}>
           <About />

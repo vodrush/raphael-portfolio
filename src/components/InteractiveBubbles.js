@@ -1,41 +1,41 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './InteractiveBubbles.css';
 
-const InteractiveBubbles = () => {
+const InteractiveBubbles = ({ mainRef }) => {
   const [bubbles, setBubbles] = useState([]);
   const mousePosition = useRef({ x: 0, y: 0 });
   const containerRef = useRef(null);
 
   const updateContainerSize = () => {
-    if (containerRef.current) {
-      containerRef.current.style.height = `${document.documentElement.scrollHeight}px`;
-      containerRef.current.style.width = `${document.documentElement.scrollWidth}px`;
+    if (containerRef.current && mainRef.current) {
+      const currentScrollHeight = mainRef.current.scrollHeight;
+      const currentScrollWidth = mainRef.current.scrollWidth;
+
+      containerRef.current.style.height = `${currentScrollHeight}px`;
+      containerRef.current.style.width = `${currentScrollWidth}px`;
+
+      const newBubbles = Array.from({ length: 250 }).map((_, i) => ({
+        id: i,
+        x: Math.random() * currentScrollWidth,
+        y: Math.random() * currentScrollHeight,
+        size: 20 + Math.random() * 80,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+      }));
+      setBubbles(newBubbles);
     }
   };
 
   useEffect(() => {
-    const initializeBubbles = () => {
-      updateContainerSize(); // Initial call on mount
-
-      const newBubbles = Array.from({ length: 250 }).map((_, i) => ({
-        id: i,
-        x: Math.random() * document.documentElement.scrollWidth,
-        y: Math.random() * document.documentElement.scrollHeight, // Generate across full scrollHeight
-        size: 20 + Math.random() * 80,
-        vx: (Math.random() - 0.5) * 0.5, // Subtle initial velocity
-        vy: (Math.random() - 0.5) * 0.5,
-      }));
-      setBubbles(newBubbles);
-    };
-
-    // Delay initialization to allow DOM to fully render
-    const timeoutId = setTimeout(initializeBubbles, 500); // 500ms delay
+    const timeoutId = setTimeout(updateContainerSize, 500);
 
     window.addEventListener('resize', updateContainerSize);
 
-    // Observe changes in the DOM to update container size
-    const observer = new MutationObserver(updateContainerSize);
-    observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+    let observer;
+    if (mainRef.current) {
+      observer = new MutationObserver(updateContainerSize);
+      observer.observe(mainRef.current, { childList: true, subtree: true, attributes: true });
+    }
 
     const handleMouseMove = (e) => {
       mousePosition.current = { x: e.clientX, y: e.clientY };
@@ -48,28 +48,26 @@ const InteractiveBubbles = () => {
         prevBubbles.map((bubble) => {
           let { x, y, vx, vy, size } = bubble;
 
-          // Add random drift
           vx += (Math.random() - 0.5) * 0.2;
           vy += (Math.random() - 0.5) * 0.2;
 
-          // Apply basic movement
           x += vx;
           y += vy;
 
-          // Bounce off walls
-          if (x + size / 2 > document.documentElement.scrollWidth || x - size / 2 < 0) {
-            vx *= -1;
-          }
-          if (y + size / 2 > document.documentElement.scrollHeight || y - size / 2 < 0) {
-            vy *= -1;
+          if (mainRef.current) {
+            if (x + size / 2 > mainRef.current.scrollWidth || x - size / 2 < 0) {
+              vx *= -1;
+            }
+            if (y + size / 2 > mainRef.current.scrollHeight || y - size / 2 < 0) {
+              vy *= -1;
+            }
           }
 
-          // Repulsion from mouse
-          const dx = x - (mousePosition.current.x + window.scrollX); // Account for scroll position
-          const dy = y - (mousePosition.current.y + window.scrollY); // Account for scroll position
+          const dx = x - (mousePosition.current.x + window.scrollX);
+          const dy = y - (mousePosition.current.y + window.scrollY);
           const distance = Math.sqrt(dx * dx + dy * dy);
-          const repulsionRadius = 150; // Radius around mouse for repulsion
-          const repulsionStrength = 0.5; // How strong the push is
+          const repulsionRadius = 150;
+          const repulsionStrength = 0.5;
 
           if (distance < repulsionRadius) {
             const force = (repulsionRadius - distance) / repulsionRadius * repulsionStrength;
@@ -77,7 +75,6 @@ const InteractiveBubbles = () => {
             vy += (dy / distance) * force;
           }
 
-          // Dampen velocity to prevent infinite acceleration
           vx *= 0.99;
           vy *= 0.99;
 
@@ -93,9 +90,11 @@ const InteractiveBubbles = () => {
       clearTimeout(timeoutId);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', updateContainerSize);
-      observer.disconnect(); // Disconnect the observer on unmount
+      if (observer) {
+        observer.disconnect();
+      }
     };
-  }, []); // Empty dependency array to run once on mount
+  }, [mainRef]);
 
   return (
     <div ref={containerRef} className="interactive-bubbles-container">
