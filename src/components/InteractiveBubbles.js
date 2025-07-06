@@ -33,10 +33,6 @@ const InteractiveBubbles = () => {
 
     window.addEventListener('resize', updateContainerSize);
 
-    // Observe changes in the DOM to update container size
-    const observer = new MutationObserver(updateContainerSize);
-    observer.observe(document.body, { childList: true, subtree: true, attributes: true });
-
     const handleMouseMove = (e) => {
       mousePosition.current = { x: e.clientX, y: e.clientY };
     };
@@ -93,7 +89,6 @@ const InteractiveBubbles = () => {
       clearTimeout(timeoutId);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', updateContainerSize);
-      observer.disconnect(); // Disconnect the observer on unmount
     };
   }, []); // Empty dependency array to run once on mount
 
