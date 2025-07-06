@@ -6,12 +6,14 @@ import ScrollToTopButton from './components/ScrollToTopButton';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import InteractiveBubbles from './components/InteractiveBubbles';
 import ScrollProgressIndicator from './components/ScrollProgressIndicator';
+import Footer from './components/Footer';
 import SpotlightCard from './components/SpotlightCard';
 
 const About = lazy(() => import('./components/About'));
 const Skills = lazy(() => import('./components/Skills'));
 const Projects = lazy(() => import('./components/Projects'));
 const Contact = lazy(() => import('./components/Contact'));
+const Learning = lazy(() => import('./components/Learning'));
 
 function App() {
   const [theme, setTheme] = useState('dark'); // 'dark' or 'light'
@@ -38,10 +40,12 @@ function App() {
           <About />
           <Skills />
           <Projects />
+          <Learning /> {/* Add Learning component here */}
           <Contact />
         </Suspense>
       </main>
       <ScrollToTopButton />
+      <Footer />
     </div>
   );
 }
