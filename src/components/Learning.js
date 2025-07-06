@@ -8,8 +8,6 @@ const Learning = () => {
   });
 
   const learningTopics = [
-    "WebAssembly (Wasm)",
-    "Rust (pour le développement web et systèmes)",
     "Intelligence Artificielle (Machine Learning & LLMs)",
     "Optimisation des performances web avancée",
     "Sécurité des applications web",
