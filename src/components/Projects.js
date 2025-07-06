@@ -8,7 +8,7 @@ const ProjectCard = ({ project, index }) => {
   });
 
   return (
-    <div ref={ref} className={`project-card ${inView ? 'is-visible' : ''}`}>
+    <div ref={ref} className={`project-card ${inView ? 'is-visible' : ''}`} style={{ transitionDelay: `${index * 0.1}s` }}>
       <h3>{project.title}</h3>
       <h4>Le Défi</h4>
       <p>{project.challenge}</p>
