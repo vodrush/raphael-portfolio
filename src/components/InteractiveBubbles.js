@@ -15,7 +15,7 @@ const InteractiveBubbles = () => {
 
   useEffect(() => {
     const initializeBubbles = () => {
-      updateContainerSize(); // Update size before generating bubbles
+      updateContainerSize(); // Initial call on mount
 
       const newBubbles = Array.from({ length: 250 }).map((_, i) => ({
         id: i,
@@ -28,9 +28,14 @@ const InteractiveBubbles = () => {
       setBubbles(newBubbles);
     };
 
-    // Initialize bubbles after the entire page has loaded
-    window.addEventListener('load', initializeBubbles);
+    // Delay initialization to allow DOM to fully render
+    const timeoutId = setTimeout(initializeBubbles, 500); // 500ms delay
+
     window.addEventListener('resize', updateContainerSize);
+
+    // Observe changes in the DOM to update container size
+    const observer = new MutationObserver(updateContainerSize);
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true });
 
     const handleMouseMove = (e) => {
       mousePosition.current = { x: e.clientX, y: e.clientY };
@@ -85,9 +90,10 @@ const InteractiveBubbles = () => {
     animate();
 
     return () => {
-      window.removeEventListener('load', initializeBubbles);
+      clearTimeout(timeoutId);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', updateContainerSize);
+      observer.disconnect(); // Disconnect the observer on unmount
     };
   }, []); // Empty dependency array to run once on mount
 
