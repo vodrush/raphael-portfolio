@@ -1,22 +1,10 @@
 import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import ThreeProjectDemo from './ThreeProjectDemo';
-
 const ProjectCard = ({ project, index }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
-
-  const [showDemo, setShowDemo] = useState(false);
-
-  const handleOpenDemo = () => {
-    setShowDemo(true);
-  };
-
-  const handleCloseDemo = () => {
-    setShowDemo(false);
-  };
 
   return (
     <div ref={ref} className={`project-card ${inView ? 'is-visible' : ''}`} style={{ transitionDelay: `${index * 0.1}s` }}>
@@ -34,9 +22,7 @@ const ProjectCard = ({ project, index }) => {
         {project.links.map((link, i) => (
           <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="cta-button">{link.text}</a>
         ))}
-        <button onClick={handleOpenDemo} className="cta-button">Voir Démo 3D</button>
       </div>
-      {showDemo && <ThreeProjectDemo onClose={handleCloseDemo} />}
     </div>
   );
 };
