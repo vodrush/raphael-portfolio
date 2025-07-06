@@ -6,6 +6,7 @@ import ScrollToTopButton from './components/ScrollToTopButton';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import InteractiveBubbles from './components/InteractiveBubbles';
 import ScrollProgressIndicator from './components/ScrollProgressIndicator';
+import SpotlightCard from './components/SpotlightCard';
 
 const About = lazy(() => import('./components/About'));
 const Skills = lazy(() => import('./components/Skills'));

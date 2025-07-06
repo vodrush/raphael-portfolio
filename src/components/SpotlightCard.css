@@ -1,0 +1,32 @@
+.spotlight-card-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.06),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* Allow clicks on children */
+  z-index: 1; /* Ensure it's above the card content but below the actual spotlight */
+}
+
+.spotlight-card-wrapper:hover::before {
+  opacity: 1;
+}
+
+/* Ensure content is above the pseudo-element */
+.spotlight-card-wrapper > * {
+  position: relative;
+  z-index: 2;
+}

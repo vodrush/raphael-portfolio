@@ -1,5 +1,6 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
+import SpotlightCard from './SpotlightCard';
 
 const ProjectCard = ({ project, index }) => {
   const { ref, inView } = useInView({
@@ -8,23 +9,25 @@ const ProjectCard = ({ project, index }) => {
   });
 
   return (
-    <div ref={ref} className={`project-card ${inView ? 'is-visible' : ''}`} style={{ transitionDelay: `${index * 0.1}s` }}>
-      <h3>{project.title}</h3>
-      <h4>Le Défi</h4>
-      <p>{project.challenge}</p>
-      <h4>La Solution</h4>
-      <p>{project.solution}</p>
-      <div className="tech-stack">
-        {project.techStack.map((tech, i) => (
-          <span key={i} className="tech-tag">{tech}</span>
-        ))}
+    <SpotlightCard>
+      <div ref={ref} className={`project-card ${inView ? 'is-visible' : ''}`} style={{ transitionDelay: `${index * 0.1}s` }}>
+        <h3>{project.title}</h3>
+        <h4>Le Défi</h4>
+        <p>{project.challenge}</p>
+        <h4>La Solution</h4>
+        <p>{project.solution}</p>
+        <div className="tech-stack">
+          {project.techStack.map((tech, i) => (
+            <span key={i} className="tech-tag">{tech}</span>
+          ))}
+        </div>
+        <div className="project-links">
+          {project.links.map((link, i) => (
+            <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="cta-button">{link.text}</a>
+          ))}
+        </div>
       </div>
-      <div className="project-links">
-        {project.links.map((link, i) => (
-          <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="cta-button">{link.text}</a>
-        ))}
-      </div>
-    </div>
+    </SpotlightCard>
   );
 };
 
