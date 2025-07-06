@@ -28,9 +28,8 @@ const InteractiveBubbles = () => {
       setBubbles(newBubbles);
     };
 
-    // Delay initialization to allow DOM to fully render
-    const timeoutId = setTimeout(initializeBubbles, 500); // 500ms delay
-
+    // Initialize bubbles after the entire page has loaded
+    window.addEventListener('load', initializeBubbles);
     window.addEventListener('resize', updateContainerSize);
 
     const handleMouseMove = (e) => {
@@ -86,7 +85,7 @@ const InteractiveBubbles = () => {
     animate();
 
     return () => {
-      clearTimeout(timeoutId);
+      window.removeEventListener('load', initializeBubbles);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', updateContainerSize);
     };
