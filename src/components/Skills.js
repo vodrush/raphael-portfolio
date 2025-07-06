@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
-import SpotlightCard from './SpotlightCard';
 import { FaReact, FaNodeJs, FaHtml5, FaSass, FaGithub, FaFigma } from 'react-icons/fa';
 import { DiJavascript1, DiMongodb } from 'react-icons/di';
 import { SiExpress, SiJsonwebtokens } from 'react-icons/si';
@@ -47,12 +46,10 @@ const Skills = () => {
             <h3>{category}</h3>
             <div className="skills-list">
               {skills[category].map((skill, skillIndex) => (
-                <SpotlightCard key={skill.name}>
-                  <div className="skill-item" style={{ transitionDelay: `${skillIndex * 0.05}s` }}>
+                <div style={{ transitionDelay: `${skillIndex * 0.05}s` }} className="skill-item">
                     <span className="skill-icon">{skill.icon}</span>
                     {skill.name}
                   </div>
-                </SpotlightCard>
               ))}
             </div>
           </div>

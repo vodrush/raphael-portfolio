@@ -41,10 +41,10 @@ const Contact = () => {
         Intéressé par mon profil pour une collaboration ou un projet ? Je suis actuellement ouvert aux opportunités et j'adorerais en discuter.
       </p>
       <form ref={form} onSubmit={sendEmail} className={`contact-form ${inView ? 'is-visible' : ''}`}>
-        <input type="text" name="user_name" placeholder="Votre Nom" required />
-        <input type="email" name="user_email" placeholder="Votre Email" required />
-        <textarea name="message" placeholder="Votre Message" rows="5" required></textarea>
-        <button type="submit" className="cta-button">Envoyer le Message</button>
+        <input type="text" name="user_name" placeholder="Votre Nom" aria-label="Votre Nom" required />
+        <input type="email" name="user_email" placeholder="Votre Email" aria-label="Votre Email" required />
+        <textarea name="message" placeholder="Votre Message" rows="5" aria-label="Votre Message" required></textarea>
+        <button type="submit" className="cta-button" aria-label="Envoyer le Message">Envoyer le Message</button>
         {statusMessage && <p className={`status-message ${statusMessage.type}`}>{statusMessage.text}</p>}
       </form>
       

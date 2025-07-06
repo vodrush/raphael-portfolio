@@ -9,9 +9,14 @@
 .shape {
     position: absolute;
     border-radius: 50%;
-    background-color: rgba(179, 174, 219, 0.1); /* #B3AEDB with low opacity */
-    filter: blur(20px);
-    animation: float 20s infinite linear;
+    background: linear-gradient(45deg, var(--header-color-dark), rgba(179, 174, 219, 0.1)); /* Gradient with theme color */
+    filter: blur(25px); /* Slightly more blur */
+    animation: float 20s infinite linear, pulse 5s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.05); opacity: 1; }
 }
 
 .shape-1 {

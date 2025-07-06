@@ -32,7 +32,7 @@ const ScrollToTopButton = () => {
   return (
     <div className="scroll-to-top">
       {isVisible && 
-        <button onClick={scrollToTop}>
+        <button onClick={scrollToTop} aria-label="Retour en haut de page">
           <FaArrowUp />
         </button>}
     </div>

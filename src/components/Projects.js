@@ -1,33 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import SpotlightCard from './SpotlightCard';
+import ThreeProjectDemo from './ThreeProjectDemo';
 
 const ProjectCard = ({ project, index }) => {
   const { ref, inView } = useInView({
-    triggerOnce: true, // Animate only once
-    threshold: 0.1, // Trigger when 10% of the card is visible
+    triggerOnce: true,
+    threshold: 0.1,
   });
 
+  const [showDemo, setShowDemo] = useState(false);
+
+  const handleOpenDemo = () => {
+    setShowDemo(true);
+  };
+
+  const handleCloseDemo = () => {
+    setShowDemo(false);
+  };
+
   return (
-    <SpotlightCard>
-      <div ref={ref} className={`project-card ${inView ? 'is-visible' : ''}`} style={{ transitionDelay: `${index * 0.1}s` }}>
-        <h3>{project.title}</h3>
-        <h4>Le Défi</h4>
-        <p>{project.challenge}</p>
-        <h4>La Solution</h4>
-        <p>{project.solution}</p>
-        <div className="tech-stack">
-          {project.techStack.map((tech, i) => (
-            <span key={i} className="tech-tag">{tech}</span>
-          ))}
-        </div>
-        <div className="project-links">
-          {project.links.map((link, i) => (
-            <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="cta-button">{link.text}</a>
-          ))}
-        </div>
+    <div ref={ref} className={`project-card ${inView ? 'is-visible' : ''}`} style={{ transitionDelay: `${index * 0.1}s` }}>
+      <h3>{project.title}</h3>
+      <h4>Le Défi</h4>
+      <p>{project.challenge}</p>
+      <h4>La Solution</h4>
+      <p>{project.solution}</p>
+      <div className="tech-stack">
+        {project.techStack.map((tech, i) => (
+          <span key={i} className="tech-tag">{tech}</span>
+        ))}
       </div>
-    </SpotlightCard>
+      <div className="project-links">
+        {project.links.map((link, i) => (
+          <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="cta-button">{link.text}</a>
+        ))}
+        <button onClick={handleOpenDemo} className="cta-button">Voir Démo 3D</button>
+      </div>
+      {showDemo && <ThreeProjectDemo onClose={handleCloseDemo} />}
+    </div>
   );
 };
 

@@ -6,6 +6,12 @@
   height: 100%;
 }
 
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
 .raphael-image {
   width: 100%; /* Use percentage for width */
   max-width: 300px; /* Set a max-width */
@@ -15,6 +21,7 @@
   border: 5px solid var(--header-color-dark);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  animation: float 3s ease-in-out infinite;
 }
 
 body.light-mode .raphael-image {

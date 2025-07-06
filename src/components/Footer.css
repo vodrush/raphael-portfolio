@@ -22,7 +22,7 @@ body.light-mode .footer {
 
 .footer-socials a {
   color: var(--text-color-dark);
-  font-size: 2rem;
+  font-size: 2rem; /* Consistent with hero section */
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
