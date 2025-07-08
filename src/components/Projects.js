@@ -7,7 +7,7 @@ const ProjectCard = ({ project, index }) => {
   });
 
   return (
-    <div ref={ref} className={`project-card ${inView ? 'is-visible' : ''}`} style={{ transitionDelay: `${index * 0.1}s` }}>
+    <article ref={ref} className={`project-card ${inView ? 'is-visible' : ''}`} style={{ transitionDelay: `${index * 0.1}s` }}>
       <h3>{project.title}</h3>
       <h4>Le Défi</h4>
       <p>{project.challenge}</p>
@@ -23,7 +23,7 @@ const ProjectCard = ({ project, index }) => {
           <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="cta-button">{link.text}</a>
         ))}
       </div>
-    </div>
+    </article>
   );
 };
 

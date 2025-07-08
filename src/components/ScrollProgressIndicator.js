@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ScrollProgressIndicator.css';
+
 
 const ScrollProgressIndicator = () => {
   const [scrollProgress, setScrollProgress] = useState(0);

@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import emailjs from '@emailjs/browser';
-
+import * as emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { ref, inView } = useInView({
@@ -16,8 +15,8 @@ const Contact = () => {
     e.preventDefault();
 
     const userEmail = form.current.user_email.value;
-    if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(userEmail)) {
-      setStatusMessage('Veuillez entrer une adresse email valide.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
+      setStatusMessage({ type: 'error', text: 'Veuillez entrer une adresse email valide.' });
       return;
     }
 

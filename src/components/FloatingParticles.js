@@ -1,5 +1,5 @@
 import React from 'react';
-import './FloatingParticles.css';
+
 
 const FloatingParticles = () => {
   const particles = Array.from({ length: 30 }).map((_, i) => (

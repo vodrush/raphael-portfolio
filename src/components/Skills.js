@@ -42,8 +42,8 @@ const Skills = () => {
       </div>
       <div className={`skills-container ${inView ? 'is-visible' : ''}`}>
         {Object.keys(skills).map(category => (
-          <div key={category} className="skills-category">
-            <h3>{category}</h3>
+          <div key={category} className="skills-category" role="group" aria-labelledby={category.replace(/\s+/g, '-').toLowerCase() + '-heading'}>
+            <h3 id={category.replace(/\s+/g, '-').toLowerCase() + '-heading'}>{category}</h3>
             <div className="skills-list">
               {skills[category].map((skill, skillIndex) => (
                                 <div key={skill.name} style={{ transitionDelay: `${skillIndex * 0.05}s` }} className="skill-item">

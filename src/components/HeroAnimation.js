@@ -1,6 +1,6 @@
 
 import React from 'react';
-import './HeroAnimation.css';
+
 
 const HeroAnimation = () => {
   return (
