@@ -101,6 +101,18 @@ body.light-mode .theme-toggle-button {
 }
 
 /* --- Animation Keyframes --- */
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -296,6 +308,10 @@ body.light-mode .hero-socials a:hover {
   font-size: 1.1rem;
 }
 
+.cta-container {
+  margin-top: 30px;
+}
+
 .about .section-title-container,
 .about .about-content {
     opacity: 0;
@@ -368,9 +384,13 @@ body.light-mode .skill-item:hover {
   border-color: var(--header-color-light);
 }
 
+.skill-item:hover .skill-icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
 .skill-icon {
   font-size: 2.5rem; /* Make icons larger */
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 body.dark-mode .skill-icon {
@@ -417,6 +437,10 @@ a:hover {
 body.light-mode .cta-button {
   border-color: var(--header-color-light);
   color: var(--header-color-light);
+}
+
+.cta-button.pulse {
+  animation: pulse-animation 2s infinite;
 }
 
 .cta-button:hover {
@@ -549,8 +573,15 @@ body.light-mode .tech-tag {
   border: 1px solid transparent;
   padding: 15px 25px;
   font-weight: bold;
-  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, opacity 0.6s ease-out, transform 0.6s ease-out;
   color: var(--text-color-dark);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.learning-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 body.light-mode .learning-item {

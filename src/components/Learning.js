@@ -22,7 +22,7 @@ const Learning = () => {
         <p>Je suis constamment en quête de nouvelles connaissances et technologies. Voici quelques domaines que j'explore activement en ce moment :</p>
         <ul className="learning-list">
           {learningTopics.map((topic, index) => (
-            <li key={index} className="learning-item" style={{ transitionDelay: `${index * 0.1}s` }}>
+            <li key={index} className={`learning-item ${inView ? 'is-visible' : ''}`} style={{ transitionDelay: `${index * 0.1}s` }}>
               {topic}
             </li>
           ))}

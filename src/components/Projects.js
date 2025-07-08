@@ -28,6 +28,11 @@ const ProjectCard = ({ project, index }) => {
 };
 
 const Projects = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   const projects = [
     {
       title: "Kasa - Plateforme Immobilière",
@@ -68,8 +73,8 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="projects">
-      <div className="section-title-container">
+    <section id="projects" className="projects" ref={ref}>
+      <div className={`section-title-container ${inView ? 'is-visible' : ''}`}>
         <h2>Mes Projets</h2>
       </div>
       <div className="projects-grid">
