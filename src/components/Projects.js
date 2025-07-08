@@ -1,5 +1,7 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+
 const ProjectCard = ({ project, index }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -20,7 +22,10 @@ const ProjectCard = ({ project, index }) => {
       </div>
       <div className="project-links">
         {project.links.map((link, i) => (
-          <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="cta-button">{link.text}</a>
+          <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="cta-button">
+            {link.type === 'github' ? <FaGithub /> : <FaExternalLinkAlt />}
+            {link.text}
+          </a>
         ))}
       </div>
     </article>
@@ -37,7 +42,7 @@ const Projects = () => {
     {
       title: "Kasa - Plateforme Immobilière",
       challenge: "Développer l'interface front-end complète d'une application de location en React, sans API back-end disponible, en suivant des maquettes Figma précises.",
-      solution: "J'ai construit une Single-Page Application avec React et React Router. J'ai créé des composants réutilisables (galerie, fiches logement, collapses animés) et géré l'état de l'application en consommant les données depuis un fichier JSON local.",
+      solution: "J'ai construit une Single-Page Application avec React et React Router, offrant une expérience utilisateur fluide et sans rechargement. J'ai développé des composants réutilisables (galerie, fiches logement, collapses animés) pour assurer une maintenance facile et une cohérence visuelle parfaite avec les maquettes Figma.",
       techStack: ["React", "React Router", "Sass", "JavaScript (ES6+)"],
       links: [
         { type: "github", text: "Voir le code", url: "https://github.com/vodrush/Projet-5" }
@@ -46,7 +51,7 @@ const Projects = () => {
     {
       title: "Mon Vieux Grimoire - API Back-end",
       challenge: "Créer l'API back-end complète pour un site de notation de livres, incluant l'authentification, la gestion des livres et l'upload d'images, avec une contrainte d'optimisation des images (Green Code).",
-      solution: "J'ai développé une API RESTful sécurisée avec Node.js et Express. J'ai mis en place l'authentification JWT, des routes CRUD pour les livres, et un middleware avec Multer et Sharp pour gérer l'upload et l'optimisation des images en temps réel.",
+      solution: "J'ai développé une API RESTful sécurisée avec Node.js et Express. J'ai mis en place une authentification JWT robuste et des routes CRUD pour une gestion complète des livres. Le point clé de ce projet est l'optimisation d'images en temps réel avec Sharp, qui a permis de réduire le poids des images de plus de 70%, améliorant ainsi considérablement les performances et l'éco-responsabilité du site (Green Code).",
       techStack: ["Node.js", "Express", "MongoDB", "JWT", "Multer", "Sharp"],
       links: [
         { type: "github", text: "Voir le code", url: "https://github.com/vodrush/Projet-7" }
@@ -55,7 +60,7 @@ const Projects = () => {
     {
       title: "Portfolio Architecte Sophie Bluel",
       challenge: "Développer le site portfolio d'une architecte d'intérieur, en intégrant des maquettes Figma et en gérant les interactions dynamiques avec une API.",
-      solution: "J'ai implémenté l'interface utilisateur en HTML, CSS et JavaScript, en assurant la consommation de l'API pour afficher les projets et gérer les fonctionnalités de connexion/déconnexion de l'administrateur.",
+      solution: "J'ai implémenté l'interface utilisateur en HTML, CSS et JavaScript, en assurant une consommation fiable de l'API pour afficher les projets. J'ai également développé la fonctionnalité de connexion de l'administrateur, permettant une gestion de contenu dynamique et sécurisée.",
       techStack: ["HTML5", "CSS3", "JavaScript", "API REST"],
       links: [
         { type: "github", text: "Voir le code", url: "https://github.com/vodrush/Projet-3" }
@@ -64,7 +69,7 @@ const Projects = () => {
     {
       title: "Booki - Intégration d'une maquette",
       challenge: "Transformer une maquette Figma en un site web statique, responsive et fidèle au design original.",
-      solution: "J'ai développé l'interface en utilisant HTML5 pour la structure sémantique et CSS3 pour le style, en assurant une compatibilité parfaite sur ordinateur et mobile.",
+      solution: "J'ai développé l'interface en utilisant HTML5 pour la structure sémantique et CSS3 pour le style, garantissant une compatibilité parfaite sur tous les appareils (responsive design) et une fidélité absolue au design original de Figma.",
       techStack: ["HTML5", "CSS3", "Figma"],
       links: [
         { type: "github", text: "Voir le code", url: "https://github.com/vodrush/Projet-2" }

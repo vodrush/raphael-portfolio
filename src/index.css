@@ -53,8 +53,10 @@ body.light-mode {
   position: fixed;
   top: 20px;
   right: 20px;
-  background: var(--card-background-dark);
-  border: 1px solid var(--border-color-dark);
+  background: rgba(42, 38, 60, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -68,8 +70,8 @@ body.light-mode {
 }
 
 body.light-mode .theme-toggle-button {
-  background: var(--card-background-light);
-  border: 1px solid var(--border-color-light);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .theme-toggle-button:hover {
@@ -355,29 +357,28 @@ body.light-mode .skills-category h3 {
 }
 
 .skill-item {
-  font-weight: bold;
+  background: rgba(42, 38, 60, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-weight: 500;
   display: flex;
-  flex-direction: row; /* Align icon and text horizontally */
   align-items: center;
-  gap: 10px; /* Adjust gap between icon and text */
-  transition: transform 0.3s ease;
-  background-color: var(--card-background-dark);
-  border-radius: 5px;
-  border: 1px solid transparent;
-  padding: 8px 15px; /* Reduced padding for skill-item */
+  gap: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 body.light-mode .skill-item {
-  background-color: var(--card-background-light);
-  border-color: var(--border-color-light);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .skill-item:hover {
-  transform: translateY(-3px);
-}
-
-body.dark-mode .skill-item:hover {
-  border-color: var(--header-color-dark);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(179, 174, 219, 0.5);
 }
 
 body.light-mode .skill-item:hover {
@@ -458,34 +459,36 @@ body.light-mode .cta-button:hover {
 /* --- Projects Section --- */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+  grid-template-columns: repeat(2, 1fr); /* Changed from auto-fit to a fixed 2-column layout */
+  gap: 40px;
 }
 
 .project-card {
-  background-color: var(--card-background-dark);
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 20px;
-  transition: transform 0.6s ease-out, border-color 0.3s ease, background-color 0.3s ease, opacity 0.6s ease-out; /* Added opacity to transition */
-  text-align: center;
+  background: rgba(42, 38, 60, 0.5); /* Fond semi-transparent */
+  backdrop-filter: blur(10px); /* Effet de flou */
+  -webkit-backdrop-filter: blur(10px); /* Pour Safari */
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  text-align: left;
   color: var(--text-color-dark);
-  opacity: 0; /* Initial state for fade-in */
-  transform: translateY(20px); /* Initial state for fade-in */
+  opacity: 0;
+  transform: translateY(30px);
+  display: flex;
+  flex-direction: column;
 }
 
 body.light-mode .project-card {
-  background-color: var(--card-background-light);
-  border-color: var(--border-color-light);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   color: var(--text-color-light);
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
-}
-
-body.dark-mode .project-card:hover {
-  border-color: var(--header-color-dark);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border-color: rgba(179, 174, 219, 0.5);
 }
 
 body.light-mode .project-card:hover {
@@ -493,47 +496,64 @@ body.light-mode .project-card:hover {
 }
 
 .project-card h3 {
-  margin-bottom: 10px;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
 }
 
 .project-card h4 {
-  margin-top: 15px;
-  margin-bottom: 5px;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: var(--header-color-dark);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+body.light-mode .project-card h4 {
+  color: var(--header-color-light);
 }
 
 .project-card p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin-bottom: 10px;
+  flex-grow: 1;
 }
 
 .tech-stack {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 15px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 25px;
 }
 
 .tech-tag {
-  background-color: var(--header-color-dark);
-  color: var(--background-color-dark);
-  padding: 5px 10px;
-  border-radius: 3px;
-  font-size: 0.8rem;
-  font-weight: bold;
+  background-color: rgba(179, 174, 219, 0.1);
+  color: var(--header-color-dark);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(179, 174, 219, 0.2);
 }
 
 body.light-mode .tech-tag {
-  background-color: var(--header-color-light);
-  color: var(--card-background-light);
+  background-color: rgba(163, 22, 33, 0.1);
+  color: var(--header-color-light);
+  border: 1px solid rgba(163, 22, 33, 0.2);
 }
 
 .project-links {
-  margin-top: 20px;
+  margin-top: auto;
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  gap: 20px;
+}
+
+.project-links a.cta-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
 }
 
 /* Animation for project cards */
@@ -568,9 +588,11 @@ body.light-mode .tech-tag {
 }
 
 .learning-item {
-  background-color: var(--card-background-dark);
-  border-radius: 8px;
-  border: 1px solid transparent;
+  background: rgba(42, 38, 60, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
   padding: 15px 25px;
   font-weight: bold;
   transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -585,17 +607,15 @@ body.light-mode .tech-tag {
 }
 
 body.light-mode .learning-item {
-  background-color: var(--card-background-light);
-  border-color: var(--border-color-light);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   color: var(--text-color-light);
 }
 
 .learning-item:hover {
   transform: translateY(-5px);
-}
-
-body.dark-mode .learning-item:hover {
-  border-color: var(--header-color-dark);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(179, 174, 219, 0.5);
 }
 
 body.light-mode .learning-item:hover {
@@ -703,23 +723,20 @@ main {
 .contact-form textarea {
   width: 100%;
   padding: 15px;
-  border-radius: 5px;
-  border: 1px solid;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   font-family: inherit;
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-body.dark-mode .contact-form input,
-body.dark-mode .contact-form textarea {
-  border-color: var(--border-color-dark);
-  background-color: var(--card-background-dark);
+  background: rgba(42, 38, 60, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: var(--text-color-dark);
 }
 
 body.light-mode .contact-form input,
 body.light-mode .contact-form textarea {
-  border-color: var(--border-color-light);
-  background-color: var(--card-background-light);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   color: var(--text-color-light);
 }
 
@@ -839,30 +856,33 @@ body.light-mode .social-links a:hover {
 
 /* --- Footer.css --- */
 .footer {
-  background-color: var(--card-background-dark);
+  background: rgba(42, 38, 60, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: var(--text-color-dark);
   text-align: center;
   padding: 40px 20px;
-  border-top: 1px solid var(--border-color-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  margin-top: 60px; /* Add some space before the footer */
 }
 
 body.light-mode .footer {
-  background-color: var(--card-background-light);
+  background: rgba(255, 255, 255, 0.6);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   color: var(--text-color-light);
-  border-top: 1px solid var(--border-color-light);
 }
 
 .footer-socials {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 25px;
   margin-bottom: 20px;
 }
 
 .footer-socials a {
   color: var(--text-color-dark);
-  font-size: 2rem; /* Consistent with hero section */
+  font-size: 2.2rem;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -872,7 +892,7 @@ body.light-mode .footer-socials a {
 
 .footer-socials a:hover {
   color: var(--header-color-dark);
-  transform: translateY(-3px);
+  transform: scale(1.2);
 }
 
 body.light-mode .footer-socials a:hover {
@@ -882,7 +902,18 @@ body.light-mode .footer-socials a:hover {
 .footer p {
   font-size: 0.9rem;
   margin-bottom: 5px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
+.footer.is-visible p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer.is-visible p:nth-child(2) { transition-delay: 0.2s; }
+.footer.is-visible p:nth-child(3) { transition-delay: 0.3s; }
 
 /* --- HeroAnimation.css --- */
 .animation-wrapper {
@@ -1010,23 +1041,38 @@ body.light-mode .bubble-inner {
 }
 
 .learning-item {
-  background-color: var(--card-background-dark);
-  padding: 10px 20px;
-  border-radius: 20px;
+  background: rgba(42, 38, 60, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px 25px;
   font-weight: bold;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid var(--border-color-dark);
-  cursor: default;
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, opacity 0.6s ease-out, transform 0.6s ease-out;
+  color: var(--text-color-dark);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.learning-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 body.light-mode .learning-item {
-  background-color: var(--card-background-light);
-  border: 1px solid var(--border-color-light);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--text-color-light);
 }
 
 .learning-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(179, 174, 219, 0.5);
+}
+
+body.light-mode .learning-item:hover {
+  border-color: var(--header-color-light);
 }
 
 .learning .section-title-container,
@@ -1104,9 +1150,11 @@ body.light-mode .scroll-progress-bar {
 }
 
 .scroll-to-top button {
-  background-color: var(--header-color-dark); /* Use theme color for background */
-  color: var(--background-color-dark); /* Use theme color for icon */
-  border: none;
+  background: rgba(42, 38, 60, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text-color-dark);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -1117,7 +1165,7 @@ body.light-mode .scroll-progress-bar {
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-  opacity: 1; /* Ensure full opacity */
+  opacity: 1;
 }
 
 .scroll-to-top button:hover {
@@ -1125,8 +1173,9 @@ body.light-mode .scroll-progress-bar {
 }
 
 body.light-mode .scroll-to-top button {
-  background-color: var(--header-color-light); /* Light mode background */
-  color: var(--card-background-light); /* Light mode icon color */
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--text-color-light);
 }
 
 .scroll-to-top button svg {
