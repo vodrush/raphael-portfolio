@@ -80,8 +80,9 @@ const InteractiveBubbles = ({ mainRef }) => {
             bubble.vy += Math.sin(angle) * force * 0.25;
           }
 
-          bubble.vx *= 0.99;
-          bubble.vy *= 0.99;
+          // Suppression du ralentissement pour un mouvement continu
+          // bubble.vx *= 0.99;
+          // bubble.vy *= 0.99;
 
           bubble.el.style.transform = `translate(${bubble.x - bubble.radius}px, ${bubble.y - bubble.radius}px)`;
         });
