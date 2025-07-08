@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useInView } from 'react-intersection-observer';
 const ProjectCard = ({ project, index }) => {
   const { ref, inView } = useInView({

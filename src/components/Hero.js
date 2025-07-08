@@ -19,7 +19,7 @@ const Hero = () => {
         </div>
       </div>
       <div className="hero-image-container">
-        <img src="/raphchill.webp" alt="Raphael Santiago" className="raphael-image" />
+        <img src="/raphchill.webp" alt="Raphael Santiago" className="raphael-image" width="300" height="300" />
       </div>
     </section>
   );

@@ -10,9 +10,16 @@
 
 .bubble {
   position: absolute;
+  /* will-change: transform; */ /* Removed as it's now on the inner bubble for opacity/scale */
+}
+
+.bubble-inner {
+  width: 100%;
+  height: 100%;
   background-color: rgba(179, 174, 219, 0.15); /* Light purple, semi-transparent */
   border-radius: 50%;
   animation: bubble-pulse 3s infinite alternate;
+  will-change: transform, opacity; /* Hint to the browser for performance */
 }
 
 @keyframes bubble-pulse {
@@ -20,6 +27,6 @@
   100% { transform: scale(1.05); opacity: 0.25; }
 }
 
-body.light-mode .bubble {
+body.light-mode .bubble-inner {
   background-color: rgba(163, 22, 33, 0.08); /* Transparent version of #A31621 */
 }

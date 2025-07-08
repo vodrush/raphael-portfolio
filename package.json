@@ -12,14 +12,17 @@
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "serve": "^14.2.4",
-    
+    "sitemap": "^8.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "serve -s build -l $PORT",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
+    "analyze": "react-scripts build --stats && webpack-bundle-analyzer build/bundle-stats.json",
+    "generate-sitemap": "node sitemap-generator.js",
     "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
@@ -39,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^4.10.2"
   }
 }

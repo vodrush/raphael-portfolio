@@ -46,7 +46,7 @@ const Skills = () => {
             <h3>{category}</h3>
             <div className="skills-list">
               {skills[category].map((skill, skillIndex) => (
-                <div style={{ transitionDelay: `${skillIndex * 0.05}s` }} className="skill-item">
+                                <div key={skill.name} style={{ transitionDelay: `${skillIndex * 0.05}s` }} className="skill-item">
                     <span className="skill-icon">{skill.icon}</span>
                     {skill.name}
                   </div>
