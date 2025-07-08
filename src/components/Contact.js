@@ -21,7 +21,7 @@ const Contact = () => {
       return;
     }
 
-    emailjs.sendForm('service_nqi9p2c', 'template_2puxn5e', form.current, 'ixRwxbOwkbsrmkk4Y')
+    emailjs.sendForm(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, form.current, process.env.REACT_APP_EMAILJS_PUBLIC_KEY)
       .then((result) => {
           console.log(result.text);
           setStatusMessage({ type: 'success', text: 'Message envoyé avec succès !' });
