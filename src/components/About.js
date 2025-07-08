@@ -1,10 +1,9 @@
-
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 
 const About = () => {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false, // L'animation se redéclenchera
     threshold: 0.1,
   });
 

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FaReact, FaNodeJs, FaHtml5, FaSass, FaGithub, FaFigma } from 'react-icons/fa';
@@ -8,7 +7,7 @@ import { MdDevices, MdAccessibilityNew, MdSpeed, MdWeb } from 'react-icons/md';
 
 const Skills = () => {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false, // L'animation se redéclenchera
     threshold: 0.1,
   });
 

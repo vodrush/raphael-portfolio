@@ -4,7 +4,7 @@ import * as emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false, // L'animation se redéclenchera
     threshold: 0.1,
   });
 

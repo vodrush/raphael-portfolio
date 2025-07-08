@@ -31,11 +31,12 @@ body {
   --card-background-dark: #2A263C;
   --border-color-dark: #2a263c;
 
-  --background-color-light: #FCF7F8;
-  --text-color-light: #A31621;
-  --header-color-light: #A31621;
-  --card-background-light: #FFFFFF;
-  --border-color-light: #E0E0E0;
+  /* Nouvelle palette douce pour le mode clair */
+  --background-color-light: #F1F3F5; /* Fond encore plus doux */
+  --text-color-light: #212529;      /* Gris foncé pour le texte */
+  --header-color-light: #34495E;      /* Bleu ardoise/marine pour les titres et accents */
+  --card-background-light: #FFFFFF;       /* Blanc pur pour les cartes */
+  --border-color-light: #DEE2E6;      /* Gris clair pour les bordures */
 }
 
 body.dark-mode {
@@ -310,9 +311,7 @@ body.light-mode .hero-socials a:hover {
   font-size: 1.1rem;
 }
 
-.cta-container {
-  margin-top: 30px;
-}
+
 
 .about .section-title-container,
 .about .about-content {
@@ -538,9 +537,9 @@ body.light-mode .project-card h4 {
 }
 
 body.light-mode .tech-tag {
-  background-color: rgba(163, 22, 33, 0.1);
+  background-color: rgba(52, 73, 94, 0.1);
   color: var(--header-color-light);
-  border: 1px solid rgba(163, 22, 33, 0.2);
+  border: 1px solid rgba(52, 73, 94, 0.2);
 }
 
 .project-links {
@@ -856,20 +855,22 @@ body.light-mode .social-links a:hover {
 
 /* --- Footer.css --- */
 .footer {
-  background: rgba(42, 38, 60, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--text-color-dark);
   text-align: center;
   padding: 40px 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-  margin-top: 60px; /* Add some space before the footer */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+body.dark-mode .footer {
+  background-color: rgba(31, 28, 44, 0.7); /* Identique au header */
+  border-top: 1px solid rgba(179, 174, 219, 0.2);
+  color: var(--text-color-dark);
 }
 
 body.light-mode .footer {
-  background: rgba(255, 255, 255, 0.6);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(241, 243, 245, 0.8); /* Identique au header */
+  border-top: 1px solid rgba(52, 73, 94, 0.2);
   color: var(--text-color-light);
 }
 
@@ -985,9 +986,9 @@ body.light-mode .footer-socials a:hover {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   z-index: -1;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .bubble {
@@ -1010,7 +1011,7 @@ body.light-mode .footer-socials a:hover {
 }
 
 body.light-mode .bubble-inner {
-  background-color: rgba(163, 22, 33, 0.08); /* Transparent version of #A31621 */
+  background-color: rgba(52, 73, 94, 0.2); /* Visibilité accrue pour les bulles */
 }
 
 /* --- Learning.css --- */

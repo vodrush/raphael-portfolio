@@ -4,7 +4,7 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 const ProjectCard = ({ project, index }) => {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false, // L'animation se redéclenchera
     threshold: 0.1,
   });
 
@@ -34,7 +34,7 @@ const ProjectCard = ({ project, index }) => {
 
 const Projects = () => {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false, // L'animation se redéclenchera
     threshold: 0.1,
   });
 

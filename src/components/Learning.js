@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer';
 
 const Learning = () => {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false, // L'animation se redéclenchera
     threshold: 0.1,
   });
 
