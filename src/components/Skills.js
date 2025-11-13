@@ -1,13 +1,13 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
-import { FaReact, FaNodeJs, FaHtml5, FaSass, FaGithub, FaFigma } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaHtml5, FaSass, FaGithub, FaFigma, FaPython } from 'react-icons/fa';
 import { DiJavascript1, DiMongodb } from 'react-icons/di';
 import { SiExpress, SiJsonwebtokens } from 'react-icons/si';
 import { MdDevices, MdAccessibilityNew, MdSpeed, MdWeb } from 'react-icons/md';
 
 const Skills = () => {
   const { ref, inView } = useInView({
-    triggerOnce: false, // L'animation se redéclenchera
+    triggerOnce: false,
     threshold: 0.1,
   });
 
@@ -23,14 +23,15 @@ const Skills = () => {
         { name: 'Node.js', icon: <FaNodeJs /> },
         { name: 'Express', icon: <SiExpress /> },
         { name: 'MongoDB', icon: <DiMongodb /> },
-        { name: 'JWT', icon: <SiJsonwebtokens /> }
+        { name: 'JWT', icon: <SiJsonwebtokens /> },
+        { name: 'API REST', icon: <MdWeb /> }
     ],
-    'Outils & Divers': [
-        { name: 'GitHub', icon: <FaGithub /> },
+    'Langages & Outils': [
+        { name: 'Python', icon: <FaPython /> },
+        { name: 'Git/GitHub', icon: <FaGithub /> },
         { name: 'Figma', icon: <FaFigma /> },
         { name: 'SEO', icon: <MdSpeed /> },
-        { name: 'Accessibilité', icon: <MdAccessibilityNew /> },
-        { name: 'HTML/CSS', icon: <MdWeb /> }
+        { name: 'Accessibilité', icon: <MdAccessibilityNew /> }
     ]
   };
 

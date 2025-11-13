@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer';
 
 const About = () => {
   const { ref, inView } = useInView({
-    triggerOnce: false, // L'animation se redéclenchera
+    triggerOnce: false,
     threshold: 0.1,
   });
 
@@ -14,7 +14,16 @@ const About = () => {
       </div>
       <div className={`about-content ${inView ? 'is-visible' : ''}`}>
         <p>
-          Passionné par la création d'expériences numériques fluides et intuitives, je me spécialise dans la transformation de concepts en applications web performantes. Mon approche est centrée sur l'utilisateur et guidée par un code propre et maintenable. J'aime résoudre des problèmes complexes et apprendre continuellement dans cet écosystème technologique en constante évolution.
+          Développeur web passionné avec un intérêt croissant pour l'Intelligence Artificielle, 
+          je crée des applications qui résolvent des problèmes concrets.
+        </p>
+        <p>
+          Maîtrise du <strong>développement Full-Stack</strong> (React, Node.js, MongoDB) et formation en cours sur l'<strong>IA avec Python</strong>. 
+          Chaque projet est une opportunité d'apprentissage.
+        </p>
+        <p>
+          Mon approche : code propre, expérience utilisateur optimale, et amélioration continue. 
+          Curieux et toujours prêt à explorer de nouvelles technologies.
         </p>
       </div>
     </section>

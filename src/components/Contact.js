@@ -1,10 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import * as emailjs from '@emailjs/browser';
+import { FaFilePdf } from 'react-icons/fa';
 
 const Contact = () => {
   const { ref, inView } = useInView({
-    triggerOnce: false, // L'animation se redéclenchera
+    triggerOnce: false,
     threshold: 0.1,
   });
 
@@ -37,8 +38,15 @@ const Contact = () => {
         <h2>Travaillons Ensemble</h2>
       </div>
       <p className={`${inView ? 'is-visible' : ''}`}>
-        Intéressé par mon profil pour une collaboration ou un projet ? Je suis actuellement ouvert aux opportunités et j'adorerais en discuter.
+        Intéressé par mon profil pour une collaboration ou un projet ? Je suis ouvert aux opportunités et j'adorerais en discuter.
       </p>
+      
+      <div className={`contact-info ${inView ? 'is-visible' : ''}`}>
+        <a href="/CV_Raphael_Santiago.pdf" download className="cta-button cv-button">
+          <FaFilePdf /> Télécharger mon CV
+        </a>
+      </div>
+
       <form ref={form} onSubmit={sendEmail} className={`contact-form ${inView ? 'is-visible' : ''}`}>
         <input type="text" name="user_name" placeholder="Votre Nom" aria-label="Votre Nom" required />
         <input type="email" name="user_email" placeholder="Votre Email" aria-label="Votre Email" required />
