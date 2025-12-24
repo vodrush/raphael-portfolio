@@ -32,11 +32,16 @@ body {
   --border-color-dark: #2a263c;
 
   /* Nouvelle palette douce pour le mode clair */
-  --background-color-light: #F1F3F5; /* Fond encore plus doux */
-  --text-color-light: #212529;      /* Gris foncé pour le texte */
-  --header-color-light: #34495E;      /* Bleu ardoise/marine pour les titres et accents */
-  --card-background-light: #FFFFFF;       /* Blanc pur pour les cartes */
-  --border-color-light: #DEE2E6;      /* Gris clair pour les bordures */
+  --background-color-light: #F1F3F5;
+  /* Fond encore plus doux */
+  --text-color-light: #212529;
+  /* Gris foncé pour le texte */
+  --header-color-light: #34495E;
+  /* Bleu ardoise/marine pour les titres et accents */
+  --card-background-light: #FFFFFF;
+  /* Blanc pur pour les cartes */
+  --border-color-light: #DEE2E6;
+  /* Gris clair pour les bordures */
 }
 
 body.dark-mode {
@@ -108,9 +113,11 @@ body.light-mode .theme-toggle-button {
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.05);
   }
+
   100% {
     transform: scale(1);
   }
@@ -121,6 +128,7 @@ body.light-mode .theme-toggle-button {
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -134,32 +142,44 @@ body.light-mode .theme-toggle-button {
 
 .fade-in-down-delay-1 {
   animation: fadeInDown 0.8s ease-out 0.2s forwards;
-  opacity: 0; /* Start hidden */
+  opacity: 0;
+  /* Start hidden */
 }
 
 .fade-in-down-delay-2 {
   animation: fadeInDown 0.8s ease-out 0.4s forwards;
-  opacity: 0; /* Start hidden */
+  opacity: 0;
+  /* Start hidden */
 }
 
 .fade-in-down-delay-3 {
   animation: fadeInDown 0.8s ease-out 0.6s forwards;
-  opacity: 0; /* Start hidden */
+  opacity: 0;
+  /* Start hidden */
 }
 
 /* --- Typography --- */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: 'Poppins', 'Montserrat', sans-serif;
   font-weight: 700;
   letter-spacing: 1px;
   transition: color 0.3s ease;
 }
 
-body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4 {
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4 {
   color: var(--header-color-dark);
 }
 
-body.light-mode h1, body.light-mode h2, body.light-mode h3, body.light-mode h4 {
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4 {
   color: var(--header-color-light);
 }
 
@@ -214,11 +234,13 @@ h4 {
 }
 
 body.dark-mode h4 {
-  color: var(--text-color-dark); /* Softer color for sub-headings */
+  color: var(--text-color-dark);
+  /* Softer color for sub-headings */
 }
 
 body.light-mode h4 {
-  color: var(--text-color-light); /* Softer color for sub-headings */
+  color: var(--text-color-light);
+  /* Softer color for sub-headings */
 }
 
 /* --- Layout & Sections --- */
@@ -238,7 +260,8 @@ section {
 }
 
 .hero-text {
-  padding-right: 20px; /* Add some space between text and animation */
+  padding-right: 20px;
+  /* Add some space between text and animation */
 }
 
 .hero-text h1 {
@@ -273,7 +296,8 @@ section {
 }
 
 .hero-socials a {
-  font-size: 2rem; /* Adjust icon size */
+  font-size: 2rem;
+  /* Adjust icon size */
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -315,14 +339,14 @@ body.light-mode .hero-socials a:hover {
 
 .about .section-title-container,
 .about .about-content {
-    opacity: 0;
-    transform: translateY(20px);
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .about .is-visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000), transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000), transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 
 /* --- Skills Section --- */
@@ -389,7 +413,8 @@ body.light-mode .skill-item:hover {
 }
 
 .skill-icon {
-  font-size: 2.5rem; /* Make icons larger */
+  font-size: 2.5rem;
+  /* Make icons larger */
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -403,24 +428,26 @@ body.light-mode .skill-icon {
 
 .skills .section-title-container,
 .skills .skills-container {
-    opacity: 0;
-    transform: translateY(20px);
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .skills .is-visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000), transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000), transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 
 a {
-  color: inherit; /* Inherit color from parent */
+  color: inherit;
+  /* Inherit color from parent */
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: none;
 }
+
 .cta-button {
   display: inline-block;
   padding: 12px 25px;
@@ -458,14 +485,18 @@ body.light-mode .cta-button:hover {
 /* --- Projects Section --- */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Changed from auto-fit to a fixed 2-column layout */
+  grid-template-columns: repeat(2, 1fr);
+  /* Changed from auto-fit to a fixed 2-column layout */
   gap: 40px;
 }
 
 .project-card {
-  background: rgba(42, 38, 60, 0.5); /* Fond semi-transparent */
-  backdrop-filter: blur(10px); /* Effet de flou */
-  -webkit-backdrop-filter: blur(10px); /* Pour Safari */
+  background: rgba(42, 38, 60, 0.5);
+  /* Fond semi-transparent */
+  backdrop-filter: blur(10px);
+  /* Effet de flou */
+  -webkit-backdrop-filter: blur(10px);
+  /* Pour Safari */
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 30px;
@@ -623,14 +654,14 @@ body.light-mode .learning-item:hover {
 
 .learning .section-title-container,
 .learning .learning-content {
-    opacity: 0;
-    transform: translateY(20px);
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .learning .is-visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000), transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000), transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 
 
@@ -646,8 +677,7 @@ body.light-mode .learning-item:hover {
     padding-right: 0;
   }
 
-  .hero-image-container {
-  }
+  .hero-image-container {}
 
   .hero-text h2 {
     text-align: center;
@@ -689,20 +719,31 @@ main {
 .contact .section-title-container,
 .contact p,
 .contact .contact-form {
-    opacity: 0;
-    transform: translateY(20px);
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .contact .is-visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000), transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000), transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 
-.contact .section-title-container.is-visible { transition-delay: 0.1s; }
-.contact p.is-visible { transition-delay: 0.2s; }
-.contact .contact-form.is-visible { transition-delay: 0.3s; }
-.contact .social-links.is-visible { transition-delay: 0.4s; }
+.contact .section-title-container.is-visible {
+  transition-delay: 0.1s;
+}
+
+.contact p.is-visible {
+  transition-delay: 0.2s;
+}
+
+.contact .contact-form.is-visible {
+  transition-delay: 0.3s;
+}
+
+.contact .social-links.is-visible {
+  transition-delay: 0.4s;
+}
 
 
 .contact p {
@@ -820,11 +861,13 @@ body.light-mode .contact-form textarea::placeholder {
 }
 
 .status-message.success {
-  color: #28a745; /* Green for success */
+  color: #28a745;
+  /* Green for success */
 }
 
 .status-message.error {
-  color: #dc3545; /* Red for error */
+  color: #dc3545;
+  /* Red for error */
 }
 
 body.dark-mode .status-message {
@@ -864,6 +907,7 @@ body.light-mode .social-links a:hover {
   color: var(--header-color-light);
   transform: scale(1.2);
 }
+
 .section-title-container {
   opacity: 0;
   transform: translateY(20px);
@@ -888,7 +932,8 @@ body.light-mode .social-links a:hover {
 
 .particle {
   position: absolute;
-  background-color: rgba(179, 174, 219, 0.15); /* Light purple, semi-transparent */
+  background-color: rgba(179, 174, 219, 0.15);
+  /* Light purple, semi-transparent */
   border-radius: 50%;
   animation: particleFloat 10s infinite ease-in-out alternate;
 }
@@ -898,10 +943,12 @@ body.light-mode .social-links a:hover {
     transform: translateY(0) translateX(0) rotate(0deg);
     opacity: 0.8;
   }
+
   50% {
     transform: translateY(-20px) translateX(20px) rotate(180deg);
     opacity: 0.5;
   }
+
   100% {
     transform: translateY(0) translateX(0) rotate(360deg);
     opacity: 0.8;
@@ -918,13 +965,15 @@ body.light-mode .social-links a:hover {
 }
 
 body.dark-mode .footer {
-  background-color: rgba(31, 28, 44, 0.7); /* Identique au header */
+  background-color: rgba(31, 28, 44, 0.7);
+  /* Identique au header */
   border-top: 1px solid rgba(179, 174, 219, 0.2);
   color: var(--text-color-dark);
 }
 
 body.light-mode .footer {
-  background-color: rgba(241, 243, 245, 0.8); /* Identique au header */
+  background-color: rgba(241, 243, 245, 0.8);
+  /* Identique au header */
   border-top: 1px solid rgba(52, 73, 94, 0.2);
   color: var(--text-color-light);
 }
@@ -968,71 +1017,99 @@ body.light-mode .footer-socials a:hover {
   transform: translateY(0);
 }
 
-.footer.is-visible p:nth-child(2) { transition-delay: 0.2s; }
-.footer.is-visible p:nth-child(3) { transition-delay: 0.3s; }
+.footer.is-visible p:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.footer.is-visible p:nth-child(3) {
+  transition-delay: 0.3s;
+}
 
 /* --- HeroAnimation.css --- */
 .animation-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .shape {
-    position: absolute;
-    border-radius: 50%;
-    background: linear-gradient(45deg, var(--header-color-dark), rgba(179, 174, 219, 0.1)); /* Gradient with theme color */
-    filter: blur(25px); /* Slightly more blur */
-    animation: heroFloat 20s infinite linear, pulse 5s infinite alternate;
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--header-color-dark), rgba(179, 174, 219, 0.1));
+  /* Gradient with theme color */
+  filter: blur(25px);
+  /* Slightly more blur */
+  animation: heroFloat 20s infinite linear, pulse 5s infinite alternate;
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(1.05); opacity: 1; }
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
 }
 
 .shape-1 {
-    width: 200px;
-    height: 200px;
-    top: 10%;
-    left: 15%;
-    animation-duration: 15s;
+  width: 200px;
+  height: 200px;
+  top: 10%;
+  left: 15%;
+  animation-duration: 15s;
 }
 
 .shape-2 {
-    width: 300px;
-    height: 300px;
-    top: 30%;
-    right: 10%;
-    animation-duration: 20s;
-    animation-delay: 3s;
+  width: 300px;
+  height: 300px;
+  top: 30%;
+  right: 10%;
+  animation-duration: 20s;
+  animation-delay: 3s;
 }
 
 .shape-3 {
-    width: 150px;
-    height: 150px;
-    bottom: 20%;
-    left: 25%;
-    animation-duration: 25s;
-    animation-delay: 1s;
+  width: 150px;
+  height: 150px;
+  bottom: 20%;
+  left: 25%;
+  animation-duration: 25s;
+  animation-delay: 1s;
 }
 
 .shape-4 {
-    width: 250px;
-    height: 250px;
-    bottom: 5%;
-    right: 20%;
-    animation-duration: 18s;
-    animation-delay: 5s;
+  width: 250px;
+  height: 250px;
+  bottom: 5%;
+  right: 20%;
+  animation-duration: 18s;
+  animation-delay: 5s;
 }
 
 @keyframes heroFloat {
-    0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-    25% { transform: translateY(-20px) translateX(20px) rotate(90deg); }
-    50% { transform: translateY(20px) translateX(-20px) rotate(180deg); }
-    75% { transform: translateY(-20px) translateX(20px) rotate(270deg); }
-    100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-20px) translateX(20px) rotate(90deg);
+  }
+
+  50% {
+    transform: translateY(20px) translateX(-20px) rotate(180deg);
+  }
+
+  75% {
+    transform: translateY(-20px) translateX(20px) rotate(270deg);
+  }
+
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(360deg);
+  }
 }
 
 /* --- InteractiveBubbles.css --- */
@@ -1048,25 +1125,36 @@ body.light-mode .footer-socials a:hover {
 
 .bubble {
   position: absolute;
-  /* will-change: transform; */ /* Removed as it's now on the inner bubble for opacity/scale */
+  /* will-change: transform; */
+  /* Removed as it's now on the inner bubble for opacity/scale */
 }
 
 .bubble-inner {
   width: 100%;
   height: 100%;
-  background-color: rgba(179, 174, 219, 0.15); /* Light purple, semi-transparent */
+  background-color: rgba(179, 174, 219, 0.15);
+  /* Light purple, semi-transparent */
   border-radius: 50%;
   animation: bubble-pulse 3s infinite alternate;
-  will-change: transform, opacity; /* Hint to the browser for performance */
+  will-change: transform, opacity;
+  /* Hint to the browser for performance */
 }
 
 @keyframes bubble-pulse {
-  0% { transform: scale(1); opacity: 0.15; }
-  100% { transform: scale(1.05); opacity: 0.25; }
+  0% {
+    transform: scale(1);
+    opacity: 0.15;
+  }
+
+  100% {
+    transform: scale(1.05);
+    opacity: 0.25;
+  }
 }
 
 body.light-mode .bubble-inner {
-  background-color: rgba(52, 73, 94, 0.2); /* Visibilité accrue pour les bulles */
+  background-color: rgba(52, 73, 94, 0.2);
+  /* Visibilité accrue pour les bulles */
 }
 
 /* --- Learning.css --- */
@@ -1133,14 +1221,14 @@ body.light-mode .learning-item:hover {
 
 .learning .section-title-container,
 .learning .learning-content {
-    opacity: 0;
-    transform: translateY(20px);
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .learning .is-visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 /* --- RaphaelImage.css --- */
@@ -1153,15 +1241,26 @@ body.light-mode .learning-item:hover {
 }
 
 @keyframes imageFloat {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .raphael-image {
-  width: 100%; /* Use percentage for width */
-  max-width: 300px; /* Set a max-width */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%;
+  /* Use percentage for width */
+  max-width: 300px;
+  /* Set a max-width */
+  height: auto;
+  /* Maintain aspect ratio */
   border-radius: 50%;
   object-fit: cover;
   border: 5px solid var(--header-color-dark);
@@ -1181,16 +1280,22 @@ body.light-mode .raphael-image {
   top: 0;
   left: 0;
   width: 100%;
-  height: 5px; /* Height of the progress bar */
-  background-color: rgba(0, 0, 0, 0.1); /* Background of the bar */
-  z-index: 1000; /* Ensure it's above other content */
+  height: 5px;
+  /* Height of the progress bar */
+  background-color: rgba(0, 0, 0, 0.1);
+  /* Background of the bar */
+  z-index: 1000;
+  /* Ensure it's above other content */
 }
 
 .scroll-progress-bar {
   height: 100%;
-  background-color: var(--header-color-dark); /* Color from theme */
-  width: 0%; /* Initial width */
-  transition: width 0.1s ease-out; /* Smooth transition for progress */
+  background-color: var(--header-color-dark);
+  /* Color from theme */
+  width: 0%;
+  /* Initial width */
+  transition: width 0.1s ease-out;
+  /* Smooth transition for progress */
 }
 
 body.light-mode .scroll-progress-bar {
@@ -1247,7 +1352,8 @@ body.light-mode .scroll-to-top button {
   border-radius: 8px;
   border: 1px solid transparent;
   background-color: var(--card-background-dark);
-  padding: 15px; /* Reduced default padding */
+  padding: 15px;
+  /* Reduced default padding */
   overflow: hidden;
   --mouse-x: 50%;
   --mouse-y: 50%;
@@ -1266,7 +1372,8 @@ body.light-mode .card-spotlight {
 }
 
 .card-spotlight:hover {
-  transform: translateY(-5px); /* Hover effect */
+  transform: translateY(-5px);
+  /* Hover effect */
 }
 
 body.dark-mode .card-spotlight:hover {
@@ -1296,7 +1403,7 @@ body.light-mode .card-spotlight:hover {
 }
 
 
-.card-spotlight > * {
+.card-spotlight>* {
   position: relative;
   z-index: 1;
 }
