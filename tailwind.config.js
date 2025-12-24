@@ -7,32 +7,27 @@ export default {
     theme: {
         extend: {
             colors: {
-                // Palette Originale du Portfolio
-                background: {
-                    dark: '#1F1C2C',
-                    light: '#F1F3F5',
-                },
-                text: {
-                    dark: '#B0B0B0',
-                    light: '#212529',
-                },
-                primary: {
-                    DEFAULT: '#B3AEDB', // Lilac pour le mode sombre
-                    light: '#34495E',   // Slate Blue pour le mode clair
-                },
-                secondary: {
-                    DEFAULT: '#e74c3c', // Rouge pour les actions/boutons
-                },
-                card: {
-                    dark: '#2A263C',
-                    light: '#FFFFFF'
-                },
-                // Palette Noël (Optionnelle / Legacy)
                 christmas: {
                     red: '#E63946',
-                    green: '#2A9D8F',
+                    green: '#2A9D8F', // Un vert sympa, ou plus traditionnel #146B3A
                     gold: '#FFD700',
-                    bg: '#0F172A',
+                    bg: '#0F172A', // Slate 900 par défaut, ou #022c22 (emerald 950) pour noel
+                },
+                background: {
+                    dark: '#022c22', // Emerald 950 : Ambiance sapin sombre
+                    light: '#F0FDF4', // Emerald 50
+                },
+                text: {
+                    dark: '#ecfdf5', // Emerald 50
+                    light: '#14532d', // Emerald 900
+                },
+                primary: {
+                    DEFAULT: '#e11d48', // Rose/Red 600 pour les accents (boules de noel)
+                    light: '#be123c',
+                },
+                card: {
+                    dark: 'rgba(6, 78, 59, 0.7)', // Emerald 900 transparent
+                    light: '#FFFFFF'
                 }
             },
             fontFamily: {
