@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FaReact, FaNodeJs, FaHtml5, FaSass, FaGithub, FaFigma, FaPython } from 'react-icons/fa';
 import { DiJavascript1, DiMongodb } from 'react-icons/di';
@@ -11,7 +11,12 @@ const Skills = () => {
     threshold: 0.1,
   });
 
-  const skills = {
+  interface Skill {
+    name: string;
+    icon: ReactNode;
+  }
+
+  const skills: { [key: string]: Skill[] } = {
     'Front-End': [
       { name: 'React', icon: <FaReact /> },
       { name: 'JavaScript (ES6+)', icon: <DiJavascript1 /> },
@@ -20,18 +25,18 @@ const Skills = () => {
       { name: 'Responsive Design', icon: <MdDevices /> }
     ],
     'Back-End': [
-        { name: 'Node.js', icon: <FaNodeJs /> },
-        { name: 'Express', icon: <SiExpress /> },
-        { name: 'MongoDB', icon: <DiMongodb /> },
-        { name: 'JWT', icon: <SiJsonwebtokens /> },
-        { name: 'API REST', icon: <MdWeb /> }
+      { name: 'Node.js', icon: <FaNodeJs /> },
+      { name: 'Express', icon: <SiExpress /> },
+      { name: 'MongoDB', icon: <DiMongodb /> },
+      { name: 'JWT', icon: <SiJsonwebtokens /> },
+      { name: 'API REST', icon: <MdWeb /> }
     ],
     'Langages & Outils': [
-        { name: 'Python', icon: <FaPython /> },
-        { name: 'Git/GitHub', icon: <FaGithub /> },
-        { name: 'Figma', icon: <FaFigma /> },
-        { name: 'SEO', icon: <MdSpeed /> },
-        { name: 'Accessibilité', icon: <MdAccessibilityNew /> }
+      { name: 'Python', icon: <FaPython /> },
+      { name: 'Git/GitHub', icon: <FaGithub /> },
+      { name: 'Figma', icon: <FaFigma /> },
+      { name: 'SEO', icon: <MdSpeed /> },
+      { name: 'Accessibilité', icon: <MdAccessibilityNew /> }
     ]
   };
 
@@ -46,10 +51,10 @@ const Skills = () => {
             <h3 id={category.replace(/\s+/g, '-').toLowerCase() + '-heading'}>{category}</h3>
             <div className="skills-list">
               {skills[category].map((skill, skillIndex) => (
-                                <div key={skill.name} style={{ transitionDelay: `${skillIndex * 0.05}s` }} className="skill-item">
-                    <span className="skill-icon">{skill.icon}</span>
-                    {skill.name}
-                  </div>
+                <div key={skill.name} style={{ transitionDelay: `${skillIndex * 0.05}s` }} className="skill-item">
+                  <span className="skill-icon">{skill.icon}</span>
+                  {skill.name}
+                </div>
               ))}
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState, FormEvent } from 'react';
 import { useInView } from 'react-intersection-observer';
 import * as emailjs from '@emailjs/browser';
 import { FaFilePdf } from 'react-icons/fa';
@@ -9,26 +9,32 @@ const Contact = () => {
     threshold: 0.1,
   });
 
-  const form = useRef();
-  const [statusMessage, setStatusMessage] = useState('');
+  const form = useRef<HTMLFormElement>(null);
+  const [statusMessage, setStatusMessage] = useState<{ type: string; text: string } | null>(null);
 
-  const sendEmail = (e) => {
+  const sendEmail = (e: FormEvent) => {
     e.preventDefault();
+    if (!form.current) return;
 
-    const userEmail = form.current.user_email.value;
+    const userEmail = (form.current.elements.namedItem('user_email') as HTMLInputElement).value;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
       setStatusMessage({ type: 'error', text: 'Veuillez entrer une adresse email valide.' });
       return;
     }
 
-    emailjs.sendForm(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, form.current, process.env.REACT_APP_EMAILJS_PUBLIC_KEY)
+    emailjs.sendForm(
+      process.env.REACT_APP_EMAILJS_SERVICE_ID || '',
+      process.env.REACT_APP_EMAILJS_TEMPLATE_ID || '',
+      form.current,
+      process.env.REACT_APP_EMAILJS_PUBLIC_KEY || ''
+    )
       .then((result) => {
-          console.log(result.text);
-          setStatusMessage({ type: 'success', text: 'Message envoyé avec succès !' });
-          form.current.reset();
+        console.log(result.text);
+        setStatusMessage({ type: 'success', text: 'Message envoyé avec succès !' });
+        form.current?.reset();
       }, (error) => {
-          console.log(error.text);
-          setStatusMessage({ type: 'error', text: `Échec de l'envoi du message. Veuillez réessayer.` });
+        console.log(error.text);
+        setStatusMessage({ type: 'error', text: `Échec de l'envoi du message. Veuillez réessayer.` });
       });
   };
 
@@ -40,7 +46,7 @@ const Contact = () => {
       <p className={`${inView ? 'is-visible' : ''}`}>
         Intéressé par mon profil pour une collaboration ou un projet ? Je suis ouvert aux opportunités et j'adorerais en discuter.
       </p>
-      
+
       <div className={`contact-info ${inView ? 'is-visible' : ''}`}>
         <a href="/CV_Raphael_Santiago.pdf" download className="cta-button cv-button">
           <FaFilePdf /> Télécharger mon CV
@@ -50,11 +56,11 @@ const Contact = () => {
       <form ref={form} onSubmit={sendEmail} className={`contact-form ${inView ? 'is-visible' : ''}`}>
         <input type="text" name="user_name" placeholder="Votre Nom" aria-label="Votre Nom" required />
         <input type="email" name="user_email" placeholder="Votre Email" aria-label="Votre Email" required />
-        <textarea name="message" placeholder="Votre Message" rows="5" aria-label="Votre Message" required></textarea>
+        <textarea name="message" placeholder="Votre Message" rows={5} aria-label="Votre Message" required></textarea>
         <button type="submit" className="cta-button" aria-label="Envoyer le Message">Envoyer le Message</button>
         {statusMessage && <p className={`status-message ${statusMessage.type}`}>{statusMessage.text}</p>}
       </form>
-      
+
     </section>
   );
 };

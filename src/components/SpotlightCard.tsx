@@ -1,10 +1,16 @@
-import React, { useRef } from "react";
+import React, { useRef, MouseEvent } from "react";
 
+interface SpotlightCardProps {
+  children: React.ReactElement;
+  className?: string;
+  spotlightColor?: string;
+}
 
-const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 255, 255, 0.25)" }) => {
-  const divRef = useRef(null);
+const SpotlightCard: React.FC<SpotlightCardProps> = ({ children, className = "", spotlightColor = "rgba(255, 255, 255, 0.25)" }) => {
+  const divRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!divRef.current) return;
     const rect = divRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -15,7 +21,7 @@ const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 2
   };
 
   // Clone the child to add styles directly to it, ensuring it's on top
-  const child = React.Children.only(children);
+  const child = React.Children.only(children) as React.ReactElement<any>;
   const childWithAppliedStyle = React.cloneElement(child, {
     style: {
       ...child.props.style, // Preserve existing styles

@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 
@@ -10,7 +9,7 @@ const Hero = () => {
         <h1 className="fade-in-down">Raphael Santiago</h1>
         <h2 className="fade-in-down-delay-1">Dev Web Full-Stack & IA</h2>
         <p className="fade-in-down-delay-2">
-          Passionné par le développement web et l'IA, je crée des applications modernes avec React, Node.js et Python. 
+          Passionné par le développement web et l'IA, je crée des applications modernes avec React, Node.js et Python.
           J'aime transformer des idées en projets concrets.
         </p>
         <div className="hero-buttons fade-in-down-delay-3">

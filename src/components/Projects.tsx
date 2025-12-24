@@ -1,8 +1,25 @@
-import React from 'react';
+import { FC } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
-const ProjectCard = ({ project, index }) => {
+interface Project {
+  title: string;
+  challenge: string;
+  solution: string;
+  techStack: string[];
+  links: {
+    type: string;
+    text: string;
+    url: string;
+  }[];
+}
+
+interface ProjectCardProps {
+  project: Project;
+  index: number;
+}
+
+const ProjectCard: FC<ProjectCardProps> = ({ project, index }) => {
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0.1,

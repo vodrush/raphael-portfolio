@@ -1,10 +1,15 @@
-import React from 'react';
+import { FC, MouseEvent } from 'react';
 import './Header.css';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
-const Header = ({ theme, toggleTheme }) => {
+interface HeaderProps {
+  theme: string;
+  toggleTheme: () => void;
+}
+
+const Header: FC<HeaderProps> = ({ theme, toggleTheme }) => {
   // Fonction pour un défilement fluide
-  const smoothScroll = (e, targetId) => {
+  const smoothScroll = (e: MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
 
 
@@ -31,7 +31,7 @@ const ScrollToTopButton = () => {
 
   return (
     <div className="scroll-to-top">
-      {isVisible && 
+      {isVisible &&
         <button onClick={scrollToTop} aria-label="Retour en haut de page">
           <FaArrowUp />
         </button>}

@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 
-const useIntersectionObserver = (options) => {
+const useIntersectionObserver = (options: IntersectionObserverInit) => {
   const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef(null);
+  const elementRef = useRef<Element>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
