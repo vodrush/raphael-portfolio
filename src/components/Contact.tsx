@@ -48,7 +48,7 @@ const Contact = () => {
       </p>
 
       <div className={`contact-info ${inView ? 'is-visible' : ''}`}>
-        <a href="/cv.pdf" download className="cta-button cv-button">
+        <a href="/CV 2026.pdf" download className="cta-button cv-button">
           <FaFilePdf /> Télécharger mon CV
         </a>
       </div>
