@@ -59,7 +59,7 @@ function App() {
           <FaSun className={`theme-icon sun-icon ${theme === 'light' ? 'visible' : 'hidden'}`} />
         </button>
       </div>
-      <main ref={mainRef}>
+      <main ref={mainRef} id="main-content">
         <Hero />
         <Suspense fallback={<div>Chargement...</div>}>
           <About />
