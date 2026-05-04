@@ -19,6 +19,7 @@ const Footer = () => {
       </div>
       <p>&copy; {new Date().getFullYear()} Raphael Santiago. Tous droits réservés.</p>
       <p>Développé avec passion et React.</p>
+      <p><a href="#privacy" className="privacy-link">Politique de confidentialité</a></p>
     </footer>
   );
 };

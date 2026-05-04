@@ -31,8 +31,9 @@ export default {
                 }
             },
             fontFamily: {
-                sans: ['Lato', 'Roboto', 'sans-serif'],
-                heading: ['Poppins', 'Montserrat', 'sans-serif'],
+                sans: ['DM Sans', 'Roboto', 'sans-serif'],
+                heading: ['Syne', 'Montserrat', 'sans-serif'],
+                mono: ['DM Mono', 'monospace'],
             }
         },
     },

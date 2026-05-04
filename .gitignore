@@ -21,3 +21,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# dev tools
+.devtools/
+DEVTOOLS.md
+.claude
+.env
+.md
+
+# project docs and plans
+squirrel.toml
+docs/

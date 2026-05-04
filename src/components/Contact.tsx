@@ -16,27 +16,31 @@ const Contact = () => {
     e.preventDefault();
     if (!form.current) return;
 
-    const userEmail = (form.current.elements.namedItem('user_email') as HTMLInputElement).value;
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
-      setStatusMessage({ type: 'error', text: 'Veuillez entrer une adresse email valide.' });
-      return;
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
+
+    if (!serviceId || !templateId || !publicKey) {
+        setStatusMessage({ type: 'error', text: 'Service de messagerie non configuré. Contactez-moi directement par email.' });
+        return;
     }
 
-    emailjs.sendForm(
-      (import.meta.env.VITE_EMAILJS_SERVICE_ID as string) || '',
-      (import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string) || '',
-      form.current,
-      (import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string) || ''
-    )
-      .then((result) => {
-        console.log(result.text);
-        setStatusMessage({ type: 'success', text: 'Message envoyé avec succès !' });
-        form.current?.reset();
-      }, (error) => {
-        console.log(error.text);
-        setStatusMessage({ type: 'error', text: `Échec de l'envoi du message. Veuillez réessayer.` });
-      });
-  };
+    const userEmail = (form.current.elements.namedItem('user_email') as HTMLInputElement).value;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
+        setStatusMessage({ type: 'error', text: 'Veuillez entrer une adresse email valide.' });
+        return;
+    }
+
+    emailjs.sendForm(serviceId, templateId, form.current, publicKey)
+        .then((result) => {
+            console.log(result.text);
+            setStatusMessage({ type: 'success', text: 'Message envoyé avec succès !' });
+            form.current?.reset();
+        }, (error) => {
+            console.log(error.text);
+            setStatusMessage({ type: 'error', text: `Échec de l'envoi du message. Veuillez réessayer.` });
+        });
+};
 
   return (
     <section id="contact" className="contact" ref={ref}>

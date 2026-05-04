@@ -43,7 +43,7 @@ const InteractiveBubbles: React.FC<InteractiveBubblesProps> = ({ mainRef }) => {
 
     const initParticles = () => {
       particles.current = [];
-      const particleCount = 100; // Nombre de bulles
+      const particleCount = 30; // Reduced for performance
 
       // Couleurs basées sur le thème sombre/clair (on pourra affiner)
       // Pour l'instant on met des couleurs neutres qui marchent avec les deux ou transparentes

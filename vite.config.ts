@@ -11,7 +11,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    open: true,
+    open: process.env.NODE_ENV !== 'production',
   },
   build: {
     outDir: 'build', // Pour garder la même compatibilité avec Cloudflare Pages si besoin
