@@ -16,7 +16,7 @@ body {
   flex-direction: column;
   background-color: var(--background-color-dark);
   color: var(--text-color-dark);
-  font-family: 'DM Sans', 'Roboto', sans-serif;
+  font-family: 'Quicksand', 'Roboto', sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,6 +28,8 @@ body {
   --background-color-dark: #1F1C2C;
   --text-color-dark: #B0B0B0;
   --header-color-dark: #B3AEDB;
+  --accent-color: #2563EB;
+  --accent-color-hover: #1D4ED8;
   --card-background-dark: #2A263C;
   --border-color-dark: #2a263c;
 
@@ -36,7 +38,7 @@ body {
   /* Fond encore plus doux */
   --text-color-light: #212529;
   /* Gris foncé pour le texte */
-  --header-color-light: #34495E;
+  --header-color-light: #2563EB;
   /* Bleu ardoise/marine pour les titres et accents */
   --card-background-light: #FFFFFF;
   /* Blanc pur pour les cartes */
@@ -576,9 +578,9 @@ body.light-mode .project-card {
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  border-color: rgba(179, 174, 219, 0.5);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(37, 99, 235, 0.15);
+  border-color: var(--accent-color);
 }
 
 .project-card:focus-visible {
@@ -590,7 +592,8 @@ body.light-mode .project-card {
 }
 
 body.light-mode .project-card:hover {
-  border-color: var(--header-color-light);
+  border-color: var(--accent-color);
+  box-shadow: 0 25px 50px rgba(37, 99, 235, 0.12);
 }
 
 .project-card h3 {
@@ -626,8 +629,8 @@ body.light-mode .project-card h4 {
 }
 
 .tech-tag {
-  background-color: rgba(179, 174, 219, 0.1);
-  color: var(--header-color-dark);
+  background-color: rgba(37, 99, 235, 0.1);
+  color: var(--accent-color);
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 0.85rem;

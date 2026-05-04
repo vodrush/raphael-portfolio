@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import InteractiveBubbles from './components/InteractiveBubbles';
+import ScrollAnimations from './components/ScrollAnimations';
 import ScrollProgressIndicator from './components/ScrollProgressIndicator';
 import Footer from './components/Footer';
 
@@ -38,6 +39,7 @@ function App() {
           <FaSun className={`theme-icon sun-icon ${theme === 'light' ? 'visible' : 'hidden'}`} />
         </button>
       </div>
+      <ScrollAnimations>
       <main ref={mainRef} id="main-content">
         <a href="#main-content" className="skip-link">Aller au contenu principal</a>
         <Hero />
@@ -50,6 +52,7 @@ function App() {
           <PrivacyPolicy />
         </Suspense>
       </main>
+</ScrollAnimations>
       <ScrollToTopButton />
       <Footer />
     </div>
