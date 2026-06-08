@@ -12,14 +12,10 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "framer-motion": "^12.23.26",
     "gsap": "^3.15.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-helmet-async": "^2.0.5",
     "react-icons": "^5.5.0",
-    "react-intersection-observer": "^9.16.0",
-    "react-snowfall": "^2.4.0",
     "sitemap": "^8.0.0"
   },
   "overrides": {
@@ -59,7 +55,6 @@
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.9.3",
-    "vite": "^7.3.0",
-    "webpack-bundle-analyzer": "^4.10.2"
+    "vite": "^7.3.0"
   }
 }

@@ -1,17 +1,10 @@
-import { useInView } from 'react-intersection-observer';
-
 const PrivacyPolicy = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
-
   return (
-    <section id="privacy" className="privacy-policy" ref={ref}>
-      <div className={`section-title-container ${inView ? 'is-visible' : ''}`}>
+    <section id="privacy" className="privacy-policy">
+      <div className="section-title-container" data-gsap="section-title">
         <h2>Politique de Confidentialité</h2>
       </div>
-      <div className={`privacy-content ${inView ? 'is-visible' : ''}`}>
+      <div className="privacy-content" data-gsap="privacy-content">
         <h3>Collecte de données</h3>
         <p>
           Ce portfolio ne collecte pas de données personnelles. Le formulaire de contact utilise EmailJS
@@ -20,7 +13,7 @@ const PrivacyPolicy = () => {
 
         <h3>Hébergement</h3>
         <p>
-          Ce site est hébergé sur GitHub Pages / Cloudflare Pages. Les données de navigation peuvent
+          Ce site est hébergé sur Cloudflare Pages. Les données de navigation peuvent
           être traitées par ces plateformes conformément à leurs politiques de confidentialité.
         </p>
 
@@ -38,12 +31,12 @@ const PrivacyPolicy = () => {
 
         <h3>Contact</h3>
         <p>
-          Pour toute question concernant cette politique de confidentialité, contactez-moi à l'adresse
-          indicated dans la section contact du portfolio.
+          Pour toute question concernant cette politique de confidentialité, contactez-moi via
+          la section contact du portfolio.
         </p>
 
         <p className="last-updated">
-          Dernière mise à jour : Mai 2026
+          Dernière mise à jour : Juin 2026
         </p>
       </div>
     </section>

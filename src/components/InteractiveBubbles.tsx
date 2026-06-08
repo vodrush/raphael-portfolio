@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 interface InteractiveBubblesProps {
-  mainRef: React.RefObject<HTMLDivElement>;
+  mainRef: React.RefObject<HTMLDivElement | null>;
 }
 
 interface Particle {
@@ -17,7 +17,8 @@ const InteractiveBubbles: React.FC<InteractiveBubblesProps> = ({ mainRef }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameId = useRef<number>(0);
   const particles = useRef<Particle[]>([]);
-  const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const mouse = useRef<{ x: number; y: number }>({ x: -999, y: -999 });
+  const canvasHeight = useRef<number>(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -26,101 +27,96 @@ const InteractiveBubbles: React.FC<InteractiveBubblesProps> = ({ mainRef }) => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Gestion du redimensionnement
-    const resizeCanvas = () => {
-      if (mainRef.current) {
-        canvas.width = mainRef.current.scrollWidth;
-        // On prend un peu plus grand pour couvrir le scroll éventuel ou juste la fenêtre
-        // Mais ici on veut que ça suive le main content
-        canvas.height = mainRef.current.scrollHeight;
-        initParticles();
-      } else {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        initParticles();
+    const dpr = window.devicePixelRatio || 1;
+
+    const getThemeColors = (): string[] => {
+      const isDark = document.body.classList.contains('dark-mode');
+      if (isDark) {
+        return [
+          'rgba(59, 130, 246, 0.08)',
+          'rgba(99, 102, 241, 0.06)',
+          'rgba(139, 92, 246, 0.05)',
+        ];
       }
+      return [
+        'rgba(59, 130, 246, 0.06)',
+        'rgba(99, 102, 241, 0.04)',
+        'rgba(139, 92, 246, 0.03)',
+      ];
+    };
+
+    const resizeCanvas = () => {
+      const w = window.innerWidth;
+      const h = mainRef.current ? mainRef.current.scrollHeight : document.documentElement.scrollHeight;
+      canvasHeight.current = h;
+
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      initParticles();
     };
 
     const initParticles = () => {
       particles.current = [];
-      const particleCount = 30; // Reduced for performance
-
-      // Couleurs basées sur le thème sombre/clair (on pourra affiner)
-      // Pour l'instant on met des couleurs neutres qui marchent avec les deux ou transparentes
-      const colors = ['rgba(179, 174, 219, 0.3)', 'rgba(52, 73, 94, 0.3)', 'rgba(255, 255, 255, 0.2)'];
+      const particleCount = 40;
+      const colors = getThemeColors();
+      const w = window.innerWidth;
+      const h = canvasHeight.current;
 
       for (let i = 0; i < particleCount; i++) {
-        const size = Math.random() * 20 + 5;
+        const size = Math.random() * 80 + 20;
         particles.current.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 1, // Vitesse un peu plus rapide
-          vy: (Math.random() - 0.5) * 1,
-          size: size,
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          size,
           color: colors[Math.floor(Math.random() * colors.length)]
         });
       }
     };
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const w = window.innerWidth;
+      const h = canvasHeight.current;
+      ctx.clearRect(0, 0, w, h);
 
       particles.current.forEach(p => {
-        // Mouvement de base
         p.x += p.vx;
         p.y += p.vy;
 
-        // Rebond sur les bords
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        if (p.x < -p.size) p.x = w + p.size;
+        if (p.x > w + p.size) p.x = -p.size;
+        if (p.y < -p.size) p.y = h + p.size;
+        if (p.y > h + p.size) p.y = -p.size;
 
-        // Interaction Souris (Répulsion fluide)
-        // On doit ajuster la pos souris avec le scroll car le canvas est en absolute dans le flux
-        // Si le canvas est fixe background, c'est différent.
-        // Ici le canvas est dans le flux (absolute top 0).
-        const mx = mouse.current.x; // + window.scrollX si besoin, mais event clientX est viewport
-        // Le canvas est surement en absolute par rapport au document, donc il faut compenser le scroll
-        // Si le canvas commence à 0,0 du document :
-        const scrollX = window.scrollX || document.documentElement.scrollLeft;
         const scrollY = window.scrollY || document.documentElement.scrollTop;
-
-        // Calcul de la distance souris (relative au viewport) vs particule (relative au canvas/document)
-        // Donc position souris dans le canvas = clientX + scrollX
-        const mouseInCanvasX = mx + scrollX;
+        const mouseInCanvasX = mouse.current.x;
         const mouseInCanvasY = mouse.current.y + scrollY;
 
         const dx = p.x - mouseInCanvasX;
         const dy = p.y - mouseInCanvasY;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        const maxDist = 150;
+        const maxDist = 200;
 
         if (distance < maxDist) {
-          const forceDirectionX = dx / distance;
-          const forceDirectionY = dy / distance;
           const force = (maxDist - distance) / maxDist;
-          const directionX = forceDirectionX * force * 2; // Force de répulsion
-          const directionY = forceDirectionY * force * 2;
-
-          p.vx += directionX;
-          p.vy += directionY;
+          p.vx += (dx / distance) * force * 0.5;
+          p.vy += (dy / distance) * force * 0.5;
         }
 
-        // Friction pour éviter que ça accélère à l'infini
-        // On veut que ça revienne à une vitesse normale
-        /* 
-           Simple friction: on réduit la vélocité si elle est trop grande
-           Mais on veut garder le mouvement brownien de base.
-        */
-        // Limite de vitesse
-        const maxSpeed = 3;
+        const maxSpeed = 1.5;
         const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
         if (speed > maxSpeed) {
           p.vx = (p.vx / speed) * maxSpeed;
           p.vy = (p.vy / speed) * maxSpeed;
         }
 
+        p.vx *= 0.99;
+        p.vy *= 0.99;
 
-        // Dessin
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
@@ -131,41 +127,58 @@ const InteractiveBubbles: React.FC<InteractiveBubblesProps> = ({ mainRef }) => {
     };
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    // Observer pour le redimensionnement du contenu main
-    const observer = new ResizeObserver(resizeCanvas);
-    if (mainRef.current) observer.observe(mainRef.current);
-
     animate();
 
+    const handleResize = () => resizeCanvas();
     const handleMouseMove = (e: MouseEvent) => {
       mouse.current = { x: e.clientX, y: e.clientY };
     };
+    const handleMouseLeave = () => {
+      mouse.current = { x: -999, y: -999 };
+    };
+
+    window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseleave', handleMouseLeave);
+
+    // Watch for theme changes
+    const themeObserver = new MutationObserver(() => {
+      const colors = getThemeColors();
+      particles.current.forEach(p => {
+        p.color = colors[Math.floor(Math.random() * colors.length)];
+      });
+    });
+    themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    // Watch for content size changes (lazy load, etc.)
+    const resizeObserver = new ResizeObserver(() => {
+      resizeCanvas();
+    });
+    if (mainRef.current) resizeObserver.observe(mainRef.current);
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
-      if (mainRef.current) observer.unobserve(mainRef.current);
+      document.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationFrameId.current);
+      themeObserver.disconnect();
+      resizeObserver.disconnect();
     };
   }, [mainRef]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="interactive-bubbles-canvas"
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        pointerEvents: 'none',
-        zIndex: 0 // Derrière le contenu
-      }}
-    />
+    <div className="interactive-bubbles-container">
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+    </div>
   );
 };
 

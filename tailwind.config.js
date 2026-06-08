@@ -7,36 +7,26 @@ export default {
     theme: {
         extend: {
             colors: {
-                christmas: {
-                    red: '#E63946',
-                    green: '#2A9D8F', // Un vert sympa, ou plus traditionnel #146B3A
-                    gold: '#FFD700',
-                    bg: '#0F172A', // Slate 900 par défaut, ou #022c22 (emerald 950) pour noel
+                bg: {
+                    DEFAULT: '#0a0a0f',
+                    card: '#12121a',
+                    glass: 'rgba(18, 18, 26, 0.6)',
                 },
-                background: {
-                    dark: '#022c22', // Emerald 950 : Ambiance sapin sombre
-                    light: '#F0FDF4', // Emerald 50
+                txt: {
+                    DEFAULT: '#a1a1aa',
+                    bright: '#f4f4f5',
                 },
-                text: {
-                    dark: '#ecfdf5', // Emerald 50
-                    light: '#14532d', // Emerald 900
+                accent: {
+                    DEFAULT: '#3b82f6',
+                    glow: 'rgba(59, 130, 246, 0.15)',
                 },
-                primary: {
-                    DEFAULT: '#e11d48', // Rose/Red 600 pour les accents (boules de noel)
-                    light: '#be123c',
-                },
-                card: {
-                    dark: 'rgba(6, 78, 59, 0.7)', // Emerald 900 transparent
-                    light: '#FFFFFF'
-                }
             },
             fontFamily: {
-                sans: ['DM Sans', 'Roboto', 'sans-serif'],
-                heading: ['Syne', 'Montserrat', 'sans-serif'],
-                mono: ['DM Mono', 'monospace'],
+                sans: ['Inter', 'system-ui', 'sans-serif'],
+                mono: ['JetBrains Mono', 'monospace'],
             }
         },
     },
-    darkMode: 'class', // On garde la gestion via classe sur body
+    darkMode: 'class',
     plugins: [],
 }

@@ -1,17 +1,10 @@
-import { useInView } from 'react-intersection-observer';
-
 const About = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
-
   return (
-    <section id="about" className="about" ref={ref}>
-      <div className={`section-title-container ${inView ? 'is-visible' : ''}`}>
+    <section id="about" className="about">
+      <div className="section-title-container" data-gsap="section-title">
         <h2>À Propos de Moi</h2>
       </div>
-      <div className={`about-content ${inView ? 'is-visible' : ''}`}>
+      <div className="about-content" data-gsap="about-content">
         <p>
           Développeur web passionné avec un intérêt croissant pour l'Intelligence Artificielle,
           je crée des applications qui résolvent des problèmes concrets.

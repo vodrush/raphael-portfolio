@@ -1,27 +1,20 @@
-import { useInView } from 'react-intersection-observer';
+const learningTopics = [
+  "Intelligence Artificielle & Machine Learning",
+  "Optimisation des perfs web",
+  "Sécurité des applications",
+];
 
 const Learning = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
-
-  const learningTopics = [
-    "Intelligence Artificielle & Machine Learning",
-    "Optimisation des perfs web",
-    "Sécurité des applications",
-  ];
-
   return (
-    <section id="learning" className="learning" ref={ref}>
-      <div className={`section-title-container ${inView ? 'is-visible' : ''}`}>
+    <section id="learning" className="learning">
+      <div className="section-title-container" data-gsap="section-title">
         <h2>Apprentissage Continu</h2>
       </div>
-      <div className={`learning-content ${inView ? 'is-visible' : ''}`}>
+      <div className="learning-content" data-gsap="learning-content">
         <p>Exploration active de nouvelles technologies et domaines :</p>
         <ul className="learning-list">
           {learningTopics.map((topic, index) => (
-            <li key={index} className={`learning-item ${inView ? 'is-visible' : ''}`} style={{ transitionDelay: `${index * 0.1}s` }}>
+            <li key={index} className="learning-item" data-gsap="learning-item">
               {topic}
             </li>
           ))}
