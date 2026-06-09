@@ -4,7 +4,6 @@ import './index.css';
 import Hero from './components/Hero';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import { FaMoon, FaSun } from 'react-icons/fa';
-import InteractiveBubbles from './components/InteractiveBubbles';
 import ScrollAnimations from './components/ScrollAnimations';
 import ScrollProgressIndicator from './components/ScrollProgressIndicator';
 import Footer from './components/Footer';
@@ -45,7 +44,6 @@ function App() {
   return (
     <div className="App" style={{ position: 'relative' }}>
       <ScrollProgressIndicator />
-      <InteractiveBubbles mainRef={mainRef} />
 
       <div className="fixed top-5 right-5 z-[1000] flex gap-4">
         <button onClick={toggleTheme} className="theme-toggle-button !static !m-0" aria-label="Changer le thème">

@@ -14,6 +14,9 @@ export default defineConfig({
     open: process.env.NODE_ENV !== 'production',
   },
   build: {
-    outDir: 'build', // Pour garder la même compatibilité avec Cloudflare Pages si besoin
+    outDir: 'build',
+    target: 'esnext',
+    minify: 'esbuild',
+    cssMinify: 'esbuild',
   },
 });

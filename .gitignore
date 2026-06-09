@@ -36,4 +36,6 @@ graphify-out/
 
 # ESLint cache
 .eslintcache
-graphify-out/.graphify_root
+
+# Lighthouse reports
+lighthouse-*.json
