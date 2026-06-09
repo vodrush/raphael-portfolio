@@ -37,5 +37,6 @@ graphify-out/
 # ESLint cache
 .eslintcache
 
-# Lighthouse reports
+# Lighthouse reports & temp
 lighthouse-*.json
+C:*
