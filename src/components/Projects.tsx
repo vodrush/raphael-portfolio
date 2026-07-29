@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useRef, MouseEvent } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
@@ -7,11 +7,7 @@ interface Project {
   challenge: string;
   solution: string;
   techStack: string[];
-  links: {
-    type: string;
-    text: string;
-    url: string;
-  }[];
+  links: { type: string; text: string; url: string }[];
 }
 
 interface ProjectCardProps {
@@ -20,18 +16,32 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: FC<ProjectCardProps> = ({ project, index }) => {
-  const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
+  const { ref: inViewRef, inView } = useInView({ triggerOnce: false, threshold: 0.1 });
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    cardRef.current.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    cardRef.current.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  };
+
+  // Combine refs
+  const setRefs = (node: HTMLDivElement | null) => {
+    (inViewRef as React.RefCallback<HTMLDivElement>)(node);
+    cardRef.current = node;
+  };
 
   return (
-    <article ref={ref} className={`project-card ${inView ? 'is-visible' : ''}`} style={{ transitionDelay: `${index * 0.1}s` }}>
-      <h3>{project.title}</h3>
-      <h4>Le Défi</h4>
-      <p>{project.challenge}</p>
-      <h4>La Solution</h4>
-      <p>{project.solution}</p>
+    <article
+      ref={setRefs}
+      className={`project-card ${inView ? 'is-visible' : ''}`}
+      style={{ transitionDelay: `${index * 0.1}s` }}
+      onMouseMove={handleMouseMove}
+    >
+      <div className="project-num">// {(index + 1).toString().padStart(3, '0')}</div>
+      <h3 className="project-title">{project.title}</h3>
+      <p className="project-desc">{project.solution}</p>
       <div className="tech-stack">
         {project.techStack.map((tech, i) => (
           <span key={i} className="tech-tag">{tech}</span>
@@ -50,54 +60,47 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, index }) => {
 };
 
 const Projects = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
+  const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.1 });
 
-  const projects = [
+  const projects: Project[] = [
     {
-      title: "Kasa - Plateforme Immobilière",
-      challenge: "Créer l'interface complète d'une app de location en React, sans back-end, en suivant des maquettes Figma.",
-      solution: "J'ai construit une SPA avec React et React Router. Navigation fluide, composants réutilisables (galerie, collapses animés), et design 100% fidèle aux maquettes.",
-      techStack: ["React", "React Router", "Sass", "JavaScript (ES6+)"],
-      links: [
-        { type: "github", text: "Voir le code", url: "https://github.com/vodrush/Projet-5" }
-      ]
+      title: "Kasa — Plateforme Immobilière",
+      challenge: "",
+      solution: "SPA React complète avec galerie interactive, collapses animés et architecture modulaire. Fidélité parfaite aux maquettes Figma.",
+      techStack: ["React", "React Router", "Sass"],
+      links: [{ type: "github", text: "Voir le code", url: "https://github.com/vodrush/Projet-5" }]
     },
     {
-      title: "Mon Vieux Grimoire - API Back-end",
-      challenge: "Développer l'API d'un site de notation de livres avec auth, upload d'images, et optimisation Green Code.",
-      solution: "API RESTful avec Node.js, Express et MongoDB. Authentification JWT sécurisée. Optimisation d'images avec Sharp : -70% de poids, grosse amélioration des perfs.",
-      techStack: ["Node.js", "Express", "MongoDB", "JWT", "Multer", "Sharp"],
-      links: [
-        { type: "github", text: "Voir le code", url: "https://github.com/vodrush/Projet-7" }
-      ]
+      title: "Mon Vieux Grimoire — API",
+      challenge: "",
+      solution: "API RESTful Node.js/Express avec authentification JWT, upload optimisé Sharp (-70% poids), base MongoDB. Architecture green code.",
+      techStack: ["Node.js", "Express", "MongoDB", "JWT", "Sharp"],
+      links: [{ type: "github", text: "Voir le code", url: "https://github.com/vodrush/Projet-7" }]
     },
     {
-      title: "Portfolio Sophie Bluel",
-      challenge: "Site portfolio pour architecte avec intégration Figma et interactions dynamiques via API.",
-      solution: "Interface en HTML/CSS/JS vanilla. Consommation d'API pour afficher les projets. Espace admin avec connexion sécurisée pour gérer le contenu.",
+      title: "Sophie Bluel — Portfolio",
+      challenge: "",
+      solution: "Site portfolio dynamique avec espace admin sécurisé, consommation d'API REST, interactions JavaScript vanilla.",
       techStack: ["HTML5", "CSS3", "JavaScript", "API REST"],
-      links: [
-        { type: "github", text: "Voir le code", url: "https://github.com/vodrush/Projet-3" }
-      ]
+      links: [{ type: "github", text: "Voir le code", url: "https://github.com/vodrush/Projet-3" }]
     },
     {
-      title: "Booki - Intégration Maquette",
-      challenge: "Transformer une maquette Figma en site web responsive.",
-      solution: "Intégration HTML5/CSS3 pure. Responsive sur tous les devices, fidélité totale au design Figma.",
+      title: "Booki — Réservation",
+      challenge: "",
+      solution: "Intégration Figma pixel-perfect en HTML/CSS pur. Design responsive sur tous les supports.",
       techStack: ["HTML5", "CSS3", "Figma"],
-      links: [
-        { type: "github", text: "Voir le code", url: "https://github.com/vodrush/Projet-2" }
-      ]
+      links: [{ type: "github", text: "Voir le code", url: "https://github.com/vodrush/Projet-2" }]
     }
   ];
 
   return (
     <section id="projects" className="projects" ref={ref}>
       <div className={`section-title-container ${inView ? 'is-visible' : ''}`}>
-        <h2>Mes Projets</h2>
+        <div className="section-header">
+          <div className="section-tag">Portfolio</div>
+          <h2 className="section-title">Projets récents</h2>
+          <p className="section-desc">Des applications web complètes, du design au déploiement.</p>
+        </div>
       </div>
       <div className="projects-grid">
         {projects.map((project, index) => (

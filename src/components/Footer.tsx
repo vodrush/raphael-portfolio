@@ -1,25 +1,22 @@
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { useInView } from 'react-intersection-observer';
 
 const Footer = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const year = new Date().getFullYear();
 
   return (
-    <footer className={`footer ${inView ? 'is-visible' : ''}`} ref={ref}>
+    <footer className="footer">
       <div className="footer-socials">
-        <a href="https://github.com/vodrush" target="_blank" rel="noopener noreferrer" aria-label="Voir mon profil GitHub">
+        <a href="https://github.com/vodrush" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
           <FaGithub />
         </a>
-        <a href="https://www.linkedin.com/in/raphael-santiago-7b80961b5/" target="_blank" rel="noopener noreferrer" aria-label="Voir mon profil LinkedIn">
+        <a href="https://www.linkedin.com/in/raphael-santiago-7b80961b5/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
           <FaLinkedin />
         </a>
       </div>
-      <p>&copy; {new Date().getFullYear()} Raphael Santiago. Tous droits réservés.</p>
-      <p>Développé avec passion et React.</p>
-      <p><a href="#privacy" className="privacy-link">Politique de confidentialité</a></p>
+      <p>&copy; {year} Raphael Santiago. Tous droits réservés.</p>
+      <p>
+        <a href="#privacy" className="privacy-link">Politique de confidentialité</a>
+      </p>
     </footer>
   );
 };

@@ -7,36 +7,47 @@ export default {
     theme: {
         extend: {
             colors: {
-                christmas: {
-                    red: '#E63946',
-                    green: '#2A9D8F', // Un vert sympa, ou plus traditionnel #146B3A
-                    gold: '#FFD700',
-                    bg: '#0F172A', // Slate 900 par défaut, ou #022c22 (emerald 950) pour noel
+                surface: {
+                    DEFAULT: '#0A0A0F',
+                    secondary: '#121216',
+                    card: '#1A1A22',
+                    'card-hover': '#22222E',
                 },
-                background: {
-                    dark: '#022c22', // Emerald 950 : Ambiance sapin sombre
-                    light: '#F0FDF4', // Emerald 50
+                accent: {
+                    DEFAULT: '#6E56CF',
+                    light: '#C4B5FD',
+                    glow: 'rgba(110, 86, 207, 0.12)',
                 },
                 text: {
-                    dark: '#ecfdf5', // Emerald 50
-                    light: '#14532d', // Emerald 900
+                    primary: '#EDEDF5',
+                    secondary: '#8A8A9A',
+                    muted: '#555565',
                 },
-                primary: {
-                    DEFAULT: '#e11d48', // Rose/Red 600 pour les accents (boules de noel)
-                    light: '#be123c',
+                border: {
+                    DEFAULT: 'rgba(255,255,255,0.06)',
                 },
-                card: {
-                    dark: 'rgba(6, 78, 59, 0.7)', // Emerald 900 transparent
-                    light: '#FFFFFF'
-                }
             },
             fontFamily: {
-                sans: ['DM Sans', 'Roboto', 'sans-serif'],
-                heading: ['Syne', 'Montserrat', 'sans-serif'],
-                mono: ['DM Mono', 'monospace'],
-            }
+                sans: ['Inter', 'system-ui', 'sans-serif'],
+                heading: ['Playfair Display', 'Georgia', 'serif'],
+                mono: ['JetBrains Mono', 'monospace'],
+            },
+            animation: {
+                'float': 'float 6s ease-in-out infinite',
+                'fade-in': 'fadeIn 0.8s ease-out forwards',
+            },
+            keyframes: {
+                float: {
+                    '0%, 100%': { transform: 'translateY(0px)' },
+                    '50%': { transform: 'translateY(-12px)' },
+                },
+                fadeIn: {
+                    from: { opacity: '0', transform: 'translateY(20px)' },
+                    to: { opacity: '1', transform: 'translateY(0)' },
+                },
+            },
         },
     },
-    darkMode: 'class', // On garde la gestion via classe sur body
+    darkMode: 'class',
     plugins: [],
 }
