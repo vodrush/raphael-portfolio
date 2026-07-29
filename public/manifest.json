@@ -20,7 +20,7 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#1F1C2C",
-  "background_color": "#1F1C2C",
+  "theme_color": "#0a0a0f",
+  "background_color": "#0a0a0f",
   "description": "Portfolio de Raphael Santiago - Développeur spécialisé en Intelligence Artificielle et développement web Full-Stack"
 }

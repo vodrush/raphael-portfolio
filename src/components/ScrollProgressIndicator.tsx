@@ -1,32 +1,28 @@
-import { useState, useEffect } from 'react';
-
+import { useEffect, useRef } from 'react';
 
 const ScrollProgressIndicator = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  const handleScroll = () => {
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrolled = window.pageYOffset;
-    if (totalHeight > 0) {
-      setScrollProgress((scrolled / totalHeight) * 100);
-    } else {
-      setScrollProgress(0);
-    }
-  };
+  const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
+    const bar = barRef.current;
+    if (!bar) return;
+
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      bar.style.width = `${progress}%`;
     };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
     <div className="scroll-progress-container">
-      <div
-        className="scroll-progress-bar"
-        style={{ width: `${scrollProgress}%` }}
-      ></div>
+      <div ref={barRef} className="scroll-progress-bar"></div>
     </div>
   );
 };
