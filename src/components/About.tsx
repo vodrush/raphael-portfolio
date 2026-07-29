@@ -39,8 +39,8 @@ const About = () => {
           <div className="stat-label">Stacks maîtrisées</div>
         </div>
         <div className="stat-item">
-          <div className="stat-value">100%</div>
-          <div className="stat-label">Autodidacte</div>
+          <div className="stat-value">Formation</div>
+          <div className="stat-label">OpenClassrooms</div>
         </div>
       </div>
     </section>
