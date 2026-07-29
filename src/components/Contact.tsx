@@ -51,18 +51,18 @@ const Contact = () => {
 
       <div className="contact-grid">
         <div className={`contact-info ${inView ? 'is-visible' : ''}`}>
-          <div className="contact-item">
+          <a href="mailto:raphaelsantiago3883@gmail.com" className="contact-item" aria-label="Envoyer un email">
             <div className="contact-item-icon">@</div>
-            <span className="contact-item-text">raphael.santiago@email.com</span>
-          </div>
-          <div className="contact-item">
+            <span className="contact-item-text">raphaelsantiago3883@gmail.com</span>
+          </a>
+          <a href="https://github.com/vodrush" target="_blank" rel="noopener noreferrer" className="contact-item" aria-label="GitHub">
             <div className="contact-item-icon"><FaGithub /></div>
             <span className="contact-item-text">github.com/vodrush</span>
-          </div>
-          <div className="contact-item">
+          </a>
+          <a href="https://www.linkedin.com/in/raphael-santiago-7b80961b5/" target="_blank" rel="noopener noreferrer" className="contact-item" aria-label="LinkedIn">
             <div className="contact-item-icon"><FaLinkedin /></div>
             <span className="contact-item-text">linkedin.com/in/raphael-santiago</span>
-          </div>
+          </a>
           <a href="/CV%202026.pdf" download className="cta-button" style={{ marginTop: '8px' }}>
             <FaFilePdf /> Télécharger mon CV
           </a>
